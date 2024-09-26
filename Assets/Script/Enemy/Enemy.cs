@@ -46,7 +46,7 @@ public class Enemy : Entity
         canBeStunned = false;
         counterWindow.SetActive(false);
     }
-    protected virtual bool IsStunned()
+    public virtual bool IsStunned()
     {
         if (canBeStunned)
         {

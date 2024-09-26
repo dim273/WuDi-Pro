@@ -22,12 +22,12 @@ public class SkeletonAnimationTrigger : MonoBehaviour
     }
     private void SlowSpeed()
     {
-        enemy.anim.speed = 0.4f;
+        enemy.anim.speed = 0.5f;
         StartCoroutine("RecoverSpeed");
     }
     private IEnumerator RecoverSpeed()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         enemy.anim.speed = 1f;
     }
 
