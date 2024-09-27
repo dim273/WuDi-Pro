@@ -48,12 +48,16 @@ public class SkeletonBattleState : EnemyState
             moveDir = 1;
         else if (player.position.x < enemy.transform.position.x)
             moveDir = -1;
-
         //敌人在到Player一定距离后会停下来
-        if (enemy.IsGroundDetected() && Mathf.Abs(enemy.transform.position.x - player.transform.position.x) > 1)
+        if (enemy.IsGroundDetected() && Mathf.Abs(enemy.transform.position.x - player.transform.position.x) > 0.5)
             enemy.SetVelocity(moveDir * enemy.moveSpeed, enemy.rb.velocity.y);
         else
-            enemy.ZeroVelocity();
+        {
+            if(moveDir != enemy.facingDir)
+                enemy.SetVelocity(moveDir * enemy.moveSpeed, enemy.rb.velocity.y);
+            else
+                enemy.ZeroVelocity();
+        }      
     }
     private bool CanAttack()
     {
