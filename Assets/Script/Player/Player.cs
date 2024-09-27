@@ -24,7 +24,7 @@ public class Player : Entity
     public float counterAttackDuration;
 
     public bool inBusy {  get; private set; }
-
+    public SkillManager skill;
     #region state
     public PlayerStateMachine stateMachine {  get; private set; }
     public PlayerIdleState idleState { get; private set; }
@@ -56,6 +56,7 @@ public class Player : Entity
     {
         base.Start();
         stateMachine.Initialize(idleState);
+        skill = SkillManager.instance;
     }
     protected override void Update()
     {
@@ -69,9 +70,9 @@ public class Player : Entity
         if (IsWallDetected())
             return;
         
-        if(Input.GetKeyDown(KeyCode.LeftShift) && dashTime < 0)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.CanUseSkill())
         {
-            dashTime = dashCoolDown;
+            //dashTime = dashCoolDown;
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0)
                 dashDir = facingDir;

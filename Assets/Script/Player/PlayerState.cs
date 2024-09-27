@@ -27,7 +27,6 @@ public class PlayerState
     {
         player.anim.SetBool(animBoolName, true);
         triggerCalled = false;
-        //Debug.Log("I enter the " +  animBoolName);
         rb = player.rb;
     }
     public virtual void Update()
