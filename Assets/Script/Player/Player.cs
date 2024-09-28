@@ -24,7 +24,8 @@ public class Player : Entity
     public float counterAttackDuration;
 
     public bool inBusy {  get; private set; }
-    public SkillManager skill;
+    public SkillManager skill {  get; private set; }
+    public GameObject sword;
     #region state
     public PlayerStateMachine stateMachine {  get; private set; }
     public PlayerIdleState idleState { get; private set; }
@@ -36,6 +37,8 @@ public class Player : Entity
     public PlayerWallJumpState wallJump {  get; private set; }  
     public PlayerPrimaryAttackState primaryAttack { get; private set; }
     public PlayerCounterAttackState counterAttack { get; private set; }
+    public PlayerAimSwordState aimSword { get; private set; }   
+    public PlayerCatchSwordState catchSword { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -51,6 +54,8 @@ public class Player : Entity
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttack = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
+        aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
+        catchSword = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
     protected override void Start()
     {
@@ -80,7 +85,15 @@ public class Player : Entity
             stateMachine.ChangeState(dashState);
         }
     }
+    public void AssignNewSword(GameObject _newSword)
+    {
+        sword = _newSword;
+    }
 
+    public void ClearTheSword()
+    {
+        Destroy(sword);
+    }
     public void AnimationTrigger() => stateMachine.currentState.AnimationTriggerCalled();
 
     public IEnumerator BusyFor(float _seconds)
