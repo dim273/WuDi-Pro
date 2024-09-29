@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2819769004714683262}
   - component: {fileID: 8885979244562377470}
-  m_Layer: 8
+  - component: {fileID: 1864886355975742253}
+  m_Layer: 9
   m_Name: basketball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +85,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1864886355975742253
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522443892453575604}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0020599365, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.19922829
 --- !u!1 &7327314376455518909
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +171,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d592aca08f083ee4a8d8533498301a58, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -178,9 +214,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0041103363, y: 0}
   serializedVersion: 2
-  m_Radius: 0.21689224
+  m_Radius: 0.1689434
 --- !u!114 &634488985919544113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,4 +229,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e2daf29ba4d6441865f88e6d72b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnSpeed: 12
+  returnSpeed: 18
+  bounceSpeed: 20

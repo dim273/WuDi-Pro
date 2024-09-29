@@ -92,6 +92,7 @@ public class Player : Entity
 
     public void ClearTheSword()
     {
+        stateMachine.ChangeState(catchSword);
         Destroy(sword);
     }
     public void AnimationTrigger() => stateMachine.currentState.AnimationTriggerCalled();
