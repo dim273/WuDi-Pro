@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2819769004714683262}
   - component: {fileID: 8885979244562377470}
   - component: {fileID: 1864886355975742253}
+  - component: {fileID: 8544238145402411638}
+  - component: {fileID: 1163079775119326}
   m_Layer: 9
   m_Name: basketball
   m_TagString: Untagged
@@ -120,6 +122,39 @@ CircleCollider2D:
   m_Offset: {x: 0.0020599365, y: 0}
   serializedVersion: 2
   m_Radius: 0.19922829
+--- !u!95 &8544238145402411638
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522443892453575604}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c66c70928069299459aa1a70fb3b9a16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1163079775119326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522443892453575604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e205476901e43489e113ea60a45b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7327314376455518909
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,5 +264,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e2daf29ba4d6441865f88e6d72b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnSpeed: 18
-  bounceSpeed: 20

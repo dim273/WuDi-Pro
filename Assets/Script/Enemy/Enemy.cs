@@ -16,6 +16,7 @@ public class Enemy : Entity
     public float moveSpeed;
     public float idleTime;
     public float battleTime;
+    private float initMoveSpeed;
 
     [Header("Attack Info")]
     public float attackDistance;
@@ -27,6 +28,7 @@ public class Enemy : Entity
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
+        initMoveSpeed = moveSpeed;
     }
     protected override void Update()
     {
@@ -54,6 +56,25 @@ public class Enemy : Entity
             return true;
         }
         return false;
+    }
+    public virtual void FreezeTime(bool _timeFreeze)
+    {
+        if (_timeFreeze)
+        {
+            moveSpeed = 0;
+            anim.speed = 0;
+        }
+        else
+        {
+            moveSpeed = initMoveSpeed;
+            anim.speed = 1;
+        }
+    }
+    protected virtual IEnumerator FreezeTimeFor(float _time)
+    {
+        FreezeTime(true);
+        yield return new WaitForSeconds(_time);
+        FreezeTime(false);
     }
     protected override void OnDrawGizmos()
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,20 +8,30 @@ public enum SwordType
     Regular,
     Bounce,
     Pierce,
-    Spin
+    Explode
 }
 public class SwordSkill : Skill
 {
     public SwordType swordType = SwordType.Regular;
+    [Header("Explode Info")]
+    [SerializeField] private int explodeGravity;
+    [SerializeField] private int explodeRange;
 
     [Header("Bounce Info")]
     [SerializeField] private int amountOfBounce;
     [SerializeField] private float bounceGravity;
+    [SerializeField] private float bounceSpeed;
+
+    [Header("Pierce Info")]
+    [SerializeField] private int amountOfFierce;
+    [SerializeField] private float pierceGravity;
 
     [Header("Sword Info")]
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchDir;
     [SerializeField] private float swordGravity;
+    [SerializeField] private float freezeDuration;
+    [SerializeField] private float returnSpeed;
 
     private Vector2 finalDir;
 
@@ -36,9 +47,11 @@ public class SwordSkill : Skill
         base.Start();
         GenereateDots();
     }
+
     protected override void Update()
     {
         base.Update();
+        SetUpGravity();
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             finalDir = new Vector2(AimDirection().normalized.x * launchDir.x, AimDirection().normalized.y * launchDir.y);
@@ -51,17 +64,34 @@ public class SwordSkill : Skill
             }
         }
     }
+    private void SetUpGravity()
+    {
+        if(swordType == SwordType.Bounce)
+            swordGravity = bounceGravity;
+        else if(swordType == SwordType.Pierce)
+            swordGravity = pierceGravity;
+        else if(swordType ==  SwordType.Explode)
+            swordGravity = explodeGravity;
+    }
     public void CreateSword()
     {
         Vector2 position = new Vector2(player.transform.position.x, player.transform.position.y + 0.8f); 
         GameObject newSword = Instantiate(swordPrefab, position, transform.rotation);
         SwordManager newSwordManager = newSword.GetComponent<SwordManager>();
+
         if(swordType == SwordType.Bounce)
         {
-            swordGravity = bounceGravity; 
-            newSwordManager.SetupBounce(true, amountOfBounce);
+            newSwordManager.SetupBounce(true, amountOfBounce, bounceSpeed);
         }
-        newSwordManager.SetupSword(finalDir, swordGravity, player);
+        else if(swordType== SwordType.Pierce)
+        {
+            newSwordManager.SetUpFierce(amountOfFierce);
+        }
+        else if(swordType == SwordType.Explode)
+        {
+            newSwordManager.SetupExplode(true, explodeRange);
+        }
+        newSwordManager.SetupSword(finalDir, swordGravity, player, freezeDuration, returnSpeed);
         player.AssignNewSword(newSword);
         DotsActive(false);
     }
