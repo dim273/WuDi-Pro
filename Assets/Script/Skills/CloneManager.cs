@@ -33,14 +33,14 @@ public class CloneManager : MonoBehaviour
         if(sr.color.a < 0)
             Destroy(gameObject);
     }
-    public void SetupClone(Transform _cloneTransform, float _cloneDuration, bool _canAttack)
+    public void SetupClone(Transform _cloneTransform, float _cloneDuration, bool _canAttack, Vector3 _offset)
     {
         if(_canAttack)
         {
             anim.SetInteger("AttackNum", Random.Range(1, 4));
         }
         cloneTimer = _cloneDuration; 
-        transform.position = _cloneTransform.position;
+        transform.position = _cloneTransform.position + _offset;
         FaseCloseEnemy();
     }
     private void AnimationTriggers()
@@ -62,7 +62,7 @@ public class CloneManager : MonoBehaviour
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 25);
         float closestDistance = Mathf.Infinity;
-        foreach(var hit in  colliders)
+        foreach(var hit in colliders)
         {
             if(hit.GetComponent<Enemy>() != null)
             {
