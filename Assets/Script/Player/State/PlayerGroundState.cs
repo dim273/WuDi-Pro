@@ -37,6 +37,9 @@ public class PlayerGroundState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
             stateMachine.ChangeState(player.jumpState);
+
+        if (Input.GetKeyDown(KeyCode.M))
+            stateMachine.ChangeState(player.blackHole);
     }
 
     private bool HasNoSword()

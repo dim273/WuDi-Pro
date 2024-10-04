@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX entityFX { get; private set; }
+    public SpriteRenderer sr { get; private set; }
     #endregion
 
     [Header("Collision Info")]
@@ -25,6 +26,7 @@ public class Entity : MonoBehaviour
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
     protected virtual void Start()
     {
@@ -80,4 +82,11 @@ public class Entity : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
     }
     #endregion
+    public void MakeTransprent(bool isClear)
+    {
+        if (isClear)
+            sr.color = Color.clear;
+        else
+            sr.color = Color.white;
+    }
 }
