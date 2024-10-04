@@ -16,7 +16,7 @@ public class Player : Entity
     public int dashSpeed;
     private float dashTime;
     public float dashDir {  get; private set; }
-
+    public bool canDash;
     
 
     [Header("Attack Detail")]
@@ -77,13 +77,12 @@ public class Player : Entity
         if (IsWallDetected())
             return;
         
-        if(Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.CanUseSkill())
+        if(Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.CanUseSkill() && canDash)
         {
             //dashTime = dashCoolDown;
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0)
                 dashDir = facingDir;
-            
             stateMachine.ChangeState(dashState);
         }
     }
@@ -98,10 +97,6 @@ public class Player : Entity
         Destroy(sword);
     }
     public void AnimationTrigger() => stateMachine.currentState.AnimationTriggerCalled();
-    public void ExitBlackholeAbility()
-    {
-        stateMachine.ChangeState(airState);
-    }
     public IEnumerator BusyFor(float _seconds)
     {
         inBusy = true;

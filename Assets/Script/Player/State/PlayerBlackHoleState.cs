@@ -24,12 +24,14 @@ public class PlayerBlackHoleState : PlayerState
         stateTimer = flyTime;
         defaultGravity = player.rb.gravityScale;
         player.rb.gravityScale = 0;
+        player.canDash = false;
     }
 
     public override void Exit()
     {
         base.Exit();
         player.rb.gravityScale = defaultGravity;
+        player.canDash = true;
         player.MakeTransprent(false);
     }
 
@@ -49,5 +51,7 @@ public class PlayerBlackHoleState : PlayerState
                     skillUsed = true;
             }
         }
+        if(player.skill.blackHole.SkillCompleted())
+            stateMachine.ChangeState(player.airState);
     }
 }

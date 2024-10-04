@@ -945,6 +945,7 @@ MonoBehaviour:
   dashCoolDown: 0.8
   dashingTime: 0.3
   dashSpeed: 10
+  canDash: 1
   attackMovement:
   - {x: 1, y: 0}
   - {x: 4, y: 0}
@@ -1403,10 +1404,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolDown: 0
   blackHolePrefab: {fileID: 77739513864537488, guid: 2ecdcb001187a9d4cb0ab1716c484a1c, type: 3}
-  maxSize: 12
+  maxSize: 8
   growSpeed: 3
   shrinkSpeed: 2
   cloneAttackCoolDown: 0.2
+  blackHoleDuration: 4
 --- !u!1 &1122092525
 GameObject:
   m_ObjectHideFlags: 0
