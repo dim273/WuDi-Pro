@@ -70,6 +70,8 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
         CheckDashInput();
+        if (Input.GetKeyDown(KeyCode.V))
+            skill.chicken.CanUseSkill();
     }
     private void CheckDashInput()
     {
