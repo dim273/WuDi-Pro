@@ -1426,6 +1426,16 @@ MonoBehaviour:
   chickenDuration: 4
   chickenPrefab: {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
   canExplode: 1
+  moveSpeed: 4
+  canMove: 1
+  canMulti: 1
+  amountOfChicken: 3
+  multiCoolDown: 4
+  chickenLeft:
+  - {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
+  - {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
+  - {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
+  useTimeWindow: 10
 --- !u!1 &1122092525
 GameObject:
   m_ObjectHideFlags: 0
