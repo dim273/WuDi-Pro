@@ -7,6 +7,7 @@ public class ChickenSkill : Skill
     [SerializeField] private float chickenDuration;
     [SerializeField] private GameObject chickenPrefab;
     private GameObject chickenGameobject;
+    private float defaultCoolDown;
 
     [Header("Explode Chicken")]
     [SerializeField] private bool canExplode;
@@ -22,17 +23,24 @@ public class ChickenSkill : Skill
     [SerializeField] List<GameObject> chickenLeft = new List<GameObject>();
     [SerializeField] private float useTimeWindow;
 
+    [Header("Create In Dash State")]
+    [SerializeField] private bool canCreateInDashState;
+
     public override void UseSkill()
     {
         base.UseSkill();
         if (CanUseMultiChicken())
             return;
-
-        if(chickenGameobject == null)
+        if(chickenGameobject == null && !canCreateInDashState)
         {
             chickenGameobject = Instantiate(chickenPrefab, player.transform.position, Quaternion.identity);
             ChickenManager newChickenManager = chickenGameobject.GetComponent<ChickenManager>();
             newChickenManager.SetupChicken(chickenDuration, canExplode, canMove, moveSpeed, FindClonestEnemy(chickenGameobject.transform));
+            if (!canMove)
+            {
+                coolDown = 0;
+                StartCoroutine("CoolDownRecover", chickenDuration);
+            }
         }
         else
         {
@@ -41,6 +49,8 @@ public class ChickenSkill : Skill
             Vector2 playerPos = player.transform.position;
             player.transform.position = chickenGameobject.transform.position;
             chickenGameobject.transform.position = playerPos;
+            if(!canCreateInDashState)
+                coolDown = defaultCoolDown;
             chickenGameobject.GetComponent<ChickenManager>().FinishChicken();
         }
     }
@@ -84,5 +94,34 @@ public class ChickenSkill : Skill
             return;
         coolDown = multiCoolDown;
         RefilChicken();
+    }
+    public void CreateChicken()
+    {
+        if (canCreateInDashState)
+        {
+            coolDown = 0;
+            if (chickenGameobject != null)
+                Destroy(chickenGameobject);
+            chickenGameobject = Instantiate(chickenPrefab, player.transform.position, Quaternion.identity);
+            ChickenManager newChickenManager = chickenGameobject.GetComponent<ChickenManager>();
+            newChickenManager.SetupChicken(chickenDuration, canExplode, canMove, moveSpeed, FindClonestEnemy(chickenGameobject.transform));
+            StartCoroutine("CreateChickenCD", defaultCoolDown);
+        }
+    }
+    private IEnumerator CreateChickenCD(int _time)
+    {
+        canCreateInDashState = false;
+        yield return new WaitForSeconds(_time);
+        canCreateInDashState = true;
+    }
+    private IEnumerator CoolDownRecover(int _time)
+    {
+        yield return new WaitForSeconds(_time);
+        coolDown = defaultCoolDown;
+    }
+    protected override void Start()
+    {
+        base.Start();
+        defaultCoolDown = coolDown;
     }
 }

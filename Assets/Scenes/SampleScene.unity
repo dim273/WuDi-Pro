@@ -1361,6 +1361,10 @@ MonoBehaviour:
   clonePrefah: {fileID: 3252935188929291861, guid: b272dae18799bae4fa48356bba7bfe95, type: 3}
   cloneDuration: 3
   canAttack: 1
+  canCreateCloneOnStart: 0
+  canCreateCloneOnOver: 0
+  canDuplicateClone: 0
+  chanceToDuplicate: 20
 --- !u!114 &1069986327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,13 +1426,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0ced60d8c267f459a837ac63d714a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 0
+  coolDown: 5
   chickenDuration: 4
   chickenPrefab: {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
   canExplode: 1
   moveSpeed: 4
-  canMove: 1
-  canMulti: 1
+  canMove: 0
+  canMulti: 0
   amountOfChicken: 3
   multiCoolDown: 4
   chickenLeft:
@@ -1436,6 +1440,7 @@ MonoBehaviour:
   - {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
   - {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
   useTimeWindow: 10
+  canCreateInDashState: 0
 --- !u!1 &1122092525
 GameObject:
   m_ObjectHideFlags: 0

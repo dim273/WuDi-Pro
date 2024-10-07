@@ -11,13 +11,15 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.skill.clone.CreateClone(player.transform, new Vector3(0,0,0));
+        player.skill.clone.CreateCloneOnStart();
+        player.skill.chicken.CreateChicken();
         stateTimer = player.dashingTime;
     }
 
     public override void Exit()
     {
         player.SetVelocity(0, rb.velocity.y);
+        player.skill.clone.CreateCloneOnOver();
         base.Exit();
     }
 
