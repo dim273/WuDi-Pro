@@ -7,25 +7,23 @@ public class PlayerDashState : PlayerState
     public PlayerDashState(Player _player, PlayerStateMachine _playerStateMachine, string _animBoolName) : base(_player, _playerStateMachine, _animBoolName)
     {
     }
-
     public override void Enter()
     {
         base.Enter();
         player.skill.clone.CreateCloneOnStart();
-        player.skill.chicken.CreateChicken();
         stateTimer = player.dashingTime;
     }
 
     public override void Exit()
     {
         player.SetVelocity(0, rb.velocity.y);
-        player.skill.clone.CreateCloneOnOver();
         base.Exit();
     }
 
     public override void Update()
     {
         base.Update();
+
         if (player.IsWallDetected() && !player.IsGroundDetected())
             stateMachine.ChangeState(player.wallState);
 

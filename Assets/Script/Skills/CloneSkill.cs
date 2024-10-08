@@ -9,26 +9,38 @@ public class CloneSkill : Skill
     [SerializeField] private float cloneDuration;
     [SerializeField] private bool canAttack;
 
+    [Header("Create Pos")]
     [SerializeField] private bool canCreateCloneOnStart;
 
-    [SerializeField] private bool canCreateCloneOnOver;
+    [Header("Chicken Instead Clone")]
+    public bool chooseChickenInsteadClone;
 
     [Header("Clone can duplicate")]
     [SerializeField] private bool canDuplicateClone;
     [SerializeField] private float chanceToDuplicate;
     public void CreateClone(Transform _cloneTransform, Vector3 _offset)
     {
+        if (chooseChickenInsteadClone)
+        {
+            SkillManager.instance.chicken.CreateChicken();
+            return;
+        }
         GameObject newClone = Instantiate(clonePrefah);
         newClone.GetComponent<CloneManager>().SetupClone(_cloneTransform, cloneDuration, canAttack, _offset, FindClonestEnemy(newClone.transform), canDuplicateClone, chanceToDuplicate);
     }
     public void CreateCloneOnStart()
     {
         if (canCreateCloneOnStart)
-            CreateClone(player.transform, Vector3.zero);
+            CanUseSkill();
     }
-    public void CreateCloneOnOver()
+    public override bool CanUseSkill()
     {
-        if (canCreateCloneOnOver)
-            CreateClone(player.transform, Vector3.zero);
+        return base.CanUseSkill();
+    }
+
+    public override void UseSkill()
+    {
+        base.UseSkill();
+        CreateClone(player.transform, Vector3.zero);
     }
 }

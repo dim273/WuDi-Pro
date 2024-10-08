@@ -70,9 +70,15 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
         CheckDashInput();
+        CreateChicken();
+    }
+
+    private void CreateChicken()
+    {
         if (Input.GetKeyDown(KeyCode.V))
             skill.chicken.CanUseSkill();
     }
+
     private void CheckDashInput()
     {
         dashTime -= Time.deltaTime;

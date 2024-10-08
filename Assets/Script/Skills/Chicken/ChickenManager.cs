@@ -17,6 +17,7 @@ public class ChickenManager : MonoBehaviour
     private float growSpeed = 3;
     private Transform closestEnemy;
 
+    [SerializeField] private LayerMask whatIsEnemy;
     public void SetupChicken(float _chickenExistTimer, bool _canExplode, bool _canMove, float _moveSpeed, Transform _closestEnemy)
     {
         chickenExistTimer = _chickenExistTimer;
@@ -31,13 +32,16 @@ public class ChickenManager : MonoBehaviour
         if (chickenExistTimer < 0)
             FinishChicken();
 
-        if (canMove && closestEnemy != null)
+        if (canMove)
         {
-            transform.position = Vector2.MoveTowards(transform.position, closestEnemy.position, moveSpeed * Time.deltaTime);
-            if(Vector2.Distance(transform.position, closestEnemy.position) < 1)
+            if (closestEnemy != null)
             {
-                canMove = false;
-                FinishChicken();
+                transform.position = Vector2.MoveTowards(transform.position, closestEnemy.position, moveSpeed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, closestEnemy.position) < 1)
+                {
+                    canMove = false;
+                    FinishChicken();
+                }
             }
         }
 
@@ -63,6 +67,14 @@ public class ChickenManager : MonoBehaviour
         else
             DestroySelf();
     }
-
+    public void ChooseRandomEnemy()
+    {
+        float radius = SkillManager.instance.blackHole.GetBlackholeRadius();
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemy);
+        if (colliders.Length > 0)
+        {
+            closestEnemy = colliders[Random.Range(0, colliders.Length)].transform;
+        }
+    }
     private void DestroySelf() => Destroy(gameObject);
 }

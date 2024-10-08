@@ -34,6 +34,9 @@ public class BlackHoleManager : MonoBehaviour
         maxSize = _maxSize;
         cloneAttackCoolDown = _coolDown;
         blackHoleTimer = _blackHoleTimer;
+        if (SkillManager.instance.clone.chooseChickenInsteadClone)
+            playerCanDisappear = false;
+
     }
     private void Update()
     {
@@ -96,7 +99,16 @@ public class BlackHoleManager : MonoBehaviour
             else
                 _offset = -1;
             int cut = Random.Range(0, targets.Count);
-            SkillManager.instance.clone.CreateClone(targets[cut], new Vector3(_offset, 0, 0));
+            if (SkillManager.instance.clone.chooseChickenInsteadClone)
+            {
+                SkillManager.instance.chicken.CreateChicken();
+                SkillManager.instance.chicken.CurrentChickenChooseRandomTarget();
+
+            }
+            else
+            {
+                SkillManager.instance.clone.CreateClone(targets[cut], new Vector3(_offset, 0, 0));
+            }
             attackIndex--;
             if (attackIndex <= 0)
             {

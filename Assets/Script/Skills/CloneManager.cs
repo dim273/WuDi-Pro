@@ -49,7 +49,7 @@ public class CloneManager : MonoBehaviour
         canDuplicateClone = _canDuplicateClone;
         chanceToDuplicate = _chanceToDuplicate;
         transform.position = _cloneTransform.position + _offset;
-        FaseCloseEnemy();
+        FacingCloseEnemy();
     }
     private void AnimationTriggers()
     {
@@ -73,7 +73,7 @@ public class CloneManager : MonoBehaviour
             }
         }
     }
-    private void FaseCloseEnemy()
+    private void FacingCloseEnemy()
     {
         if(closestEnemy != null)
         {
