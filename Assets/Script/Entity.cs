@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public EntityFX entityFX { get; private set; }
     public SpriteRenderer sr { get; private set; }
+    public CharacterStats stats { get; private set; }
     #endregion
 
     [Header("Collision Info")]
@@ -32,6 +33,7 @@ public class Entity : MonoBehaviour
     {
         entityFX = GetComponentInChildren<EntityFX>();
         anim = GetComponentInChildren<Animator>();
+        stats = GetComponentInChildren<CharacterStats>();   
     }
     protected virtual void Update()
     {

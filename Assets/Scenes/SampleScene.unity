@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6735176155699381874, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_LocalPosition.x
@@ -786,6 +789,33 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &570522170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+  m_PrefabInstance: {fileID: 2019885485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &570522171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570522170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28083200668a2b4ba60a0b49d2cdd74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strenth:
+    baseValue: 0
+    modifiers: 
+  damage:
+    baseValue: 6
+    modifiers: 0100000003000000
+  maxHealth:
+    baseValue: 100
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &640633143
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +941,7 @@ GameObject:
   - component: {fileID: 714448797}
   - component: {fileID: 714448799}
   - component: {fileID: 714448800}
+  - component: {fileID: 714448801}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1034,6 +1065,28 @@ CapsuleCollider2D:
   m_Offset: {x: -0.025534868, y: 0.17978644}
   m_Size: {x: 0.7496079, y: 1.6751351}
   m_Direction: 0
+--- !u!114 &714448801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714448796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb6310c508414a4095a736f4651d78d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strenth:
+    baseValue: 10
+    modifiers: 
+  damage:
+    baseValue: 10
+    modifiers: 
+  maxHealth:
+    baseValue: 100
+    modifiers: 
+  currentHealth: 0
 --- !u!1 &855733969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,7 +1415,7 @@ MonoBehaviour:
   cloneDuration: 3
   canAttack: 1
   canCreateCloneOnStart: 0
-  canCreateCloneOnOver: 0
+  chooseChickenInsteadClone: 0
   canDuplicateClone: 0
   chanceToDuplicate: 20
 --- !u!114 &1069986327
@@ -1440,7 +1493,6 @@ MonoBehaviour:
   - {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
   - {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
   useTimeWindow: 10
-  canCreateInDashState: 0
 --- !u!1 &1122092525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,6 +1655,10 @@ PrefabInstance:
     - target: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6735176155699381874, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12258,7 +12314,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 570522171}
   m_SourcePrefab: {fileID: 100100000, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
 --- !u!1 &2064228018
 GameObject:
