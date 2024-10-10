@@ -789,33 +789,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &570522170 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
-  m_PrefabInstance: {fileID: 2019885485}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &570522171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570522170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e28083200668a2b4ba60a0b49d2cdd74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strenth:
-    baseValue: 0
-    modifiers: 
-  damage:
-    baseValue: 6
-    modifiers: 0100000003000000
-  maxHealth:
-    baseValue: 100
-    modifiers: 
-  currentHealth: 0
 --- !u!1 &640633143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1057,7 @@ MonoBehaviour:
     baseValue: 10
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 20
     modifiers: 
   currentHealth: 0
 --- !u!1 &855733969
@@ -12314,10 +12287,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 570522171}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
 --- !u!1 &2064228018
 GameObject:

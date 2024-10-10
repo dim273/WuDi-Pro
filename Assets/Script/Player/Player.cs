@@ -40,6 +40,7 @@ public class Player : Entity
     public PlayerAimSwordState aimSword { get; private set; }   
     public PlayerCatchSwordState catchSword { get; private set; }
     public PlayerBlackHoleState blackHole { get; private set; }
+    public PlayerDeathState deathState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -58,6 +59,7 @@ public class Player : Entity
         aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSword = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         blackHole = new PlayerBlackHoleState(this, stateMachine, "Jump");
+        deathState = new PlayerDeathState(this, stateMachine, "Death");
     }
     protected override void Start()
     {
@@ -110,5 +112,10 @@ public class Player : Entity
         inBusy = true;
         yield return new WaitForSeconds(_seconds);
         inBusy = false;
+    }
+    public override void Die()
+    {
+        base.Die();
+        stateMachine.ChangeState(deathState);
     }
 }

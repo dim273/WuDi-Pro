@@ -21,9 +21,12 @@ public class CharacterStats : MonoBehaviour
     }
     protected virtual void TakeDamage(int _damage)
     {
-        currentHealth -= _damage;
-        Debug.Log(_damage);
-        if (currentHealth < 0)
+        if (currentHealth < _damage)
+            currentHealth = 0;
+        else
+            currentHealth -= _damage;
+        
+        if (currentHealth <= 0)
             Die();
     }
     protected virtual void Die()

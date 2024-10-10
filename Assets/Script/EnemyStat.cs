@@ -14,6 +14,7 @@ public class EnemyStat : CharacterStats
     protected override void Die()
     {
         base.Die();
+        enemy.Die();
     }
 
     protected override void Start()

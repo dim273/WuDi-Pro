@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class SkeletonAnimationTrigger : MonoBehaviour
 {
@@ -34,4 +35,9 @@ public class SkeletonAnimationTrigger : MonoBehaviour
 
     private void OpenCounterAttackWindow() => enemy.OpenCounterAttackWindow();
     private void CloseCounterAttackWindow() =>enemy.CloseCounterAttackWindow();
+
+    private void DestroyThis()
+    {
+        enemy.DestroyThis();
+    }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -23,7 +24,12 @@ public class Enemy : Entity
     public float attackCooldown;
     [HideInInspector] public float lastTimeAttacked;
 
+    public string lastingAnimBoolName {  get; protected set; }
     public EnemyStateMachine stateMachine { get; private set; }
+    public virtual void AssignLastAnimName(string _animBoolName)
+    {
+        lastingAnimBoolName = _animBoolName;
+    }
     protected override void Awake()
     {
         base.Awake();

@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     public EntityFX entityFX { get; private set; }
     public SpriteRenderer sr { get; private set; }
     public CharacterStats stats { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }
     #endregion
 
     [Header("Collision Info")]
@@ -33,7 +34,8 @@ public class Entity : MonoBehaviour
     {
         entityFX = GetComponentInChildren<EntityFX>();
         anim = GetComponentInChildren<Animator>();
-        stats = GetComponentInChildren<CharacterStats>();   
+        stats = GetComponentInChildren<CharacterStats>();  
+        cd = GetComponent<CapsuleCollider2D>();
     }
     protected virtual void Update()
     {
@@ -43,7 +45,6 @@ public class Entity : MonoBehaviour
     public virtual void Damage()
     {
         entityFX.StartCoroutine("FlashFX");
-        Debug.Log(gameObject.name + "was damaged.");
     }
 
     #region Collision
@@ -91,4 +92,9 @@ public class Entity : MonoBehaviour
         else
             sr.color = Color.white;
     }
+    public virtual void Die()
+    {
+
+    }
+    public virtual void DestroyThis() => Destroy(gameObject);
 }

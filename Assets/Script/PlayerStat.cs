@@ -14,6 +14,7 @@ public class PlayerStat : CharacterStats
     protected override void Die()
     {
         base.Die();
+        player.Die();
     }
 
     protected override void Start()
