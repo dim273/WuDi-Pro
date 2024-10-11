@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb6310c508414a4095a736f4651d78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strenth:
+  strength:
     baseValue: 10
     modifiers: 
   agility:
@@ -1071,6 +1071,12 @@ MonoBehaviour:
     modifiers: 
   damage:
     baseValue: 10
+    modifiers: 
+  critChance:
+    baseValue: 99
+    modifiers: 
+  critPower:
+    baseValue: 150
     modifiers: 
   currentHealth: 0
 --- !u!1 &855733969
