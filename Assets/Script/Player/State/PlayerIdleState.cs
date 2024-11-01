@@ -6,7 +6,6 @@ public class PlayerIdleState : PlayerGroundState
 {
     public PlayerIdleState(Player _player, PlayerStateMachine _playerStateMachine, string _animBoolName) : base(_player, _playerStateMachine, _animBoolName)
     {
-
     }
 
     public override void Enter()
@@ -27,7 +26,6 @@ public class PlayerIdleState : PlayerGroundState
         {
             if (xInput != 0 && xInput != player.facingDir)
                 stateMachine.ChangeState(player.moveState);
-
         }
         else
         {

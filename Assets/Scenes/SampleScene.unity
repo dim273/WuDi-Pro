@@ -1057,7 +1057,7 @@ MonoBehaviour:
   agility:
     baseValue: 0
     modifiers: 
-  intelgence:
+  intellgence:
     baseValue: 0
     modifiers: 
   vitality:
@@ -1069,6 +1069,9 @@ MonoBehaviour:
   armor:
     baseValue: 100
     modifiers: 
+  magicResisitance:
+    baseValue: 0
+    modifiers: 
   damage:
     baseValue: 10
     modifiers: 
@@ -1078,6 +1081,18 @@ MonoBehaviour:
   critPower:
     baseValue: 150
     modifiers: 
+  fireDamage:
+    baseValue: 5
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightingDamage:
+    baseValue: 0
+    modifiers: 
+  isIgnited: 0
+  isChilded: 0
+  isShocked: 0
   currentHealth: 0
 --- !u!1 &855733969
 GameObject:
