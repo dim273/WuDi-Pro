@@ -29,12 +29,51 @@ public class CharacterStats : MonoBehaviour
     public bool isChilded;
     public bool isShocked;
 
+    private float ignitedTimer;
+    private float chilledTimer;
+    private float shockedTimer;
+
+    private float ignitedCoolDown = .3f;
+    private float ignitDamageTimer;
+    private int ignitDamage;
+
     [SerializeField] private int currentHealth;
 
     protected virtual void Start()
     {
         currentHealth = maxHealth.GetValue();
         critPower.SetDefaultValue(150);
+    }
+    protected virtual void Update()
+    {
+        ignitDamageTimer -= Time.deltaTime;
+
+        shockedTimer -= Time.deltaTime;
+        chilledTimer -= Time.deltaTime;
+        ignitedTimer -= Time.deltaTime;
+
+        if(shockedTimer < 0)
+            isShocked = false;
+
+        if(chilledTimer < 0)
+            isChilded = false;
+
+        if(ignitedTimer < 0)
+            isIgnited = false;
+
+        if(ignitDamageTimer < 0 && isIgnited)
+        {
+            Debug.Log("受到的火焰伤害：" + ignitDamage);
+
+            currentHealth -= ignitDamage;
+
+            if(currentHealth <= 0)
+            {
+                Die();
+            }
+            ignitDamageTimer = ignitedCoolDown;
+        }
+
     }
     public virtual void DoDamage(CharacterStats _targetStats)
     {
@@ -57,10 +96,45 @@ public class CharacterStats : MonoBehaviour
 
         totleMagicaDamage = CheckTargetResistance(_targetStats,totleMagicaDamage);
         _targetStats.TakeDamage(totleMagicaDamage);
+
+        if(Mathf.Max(_lightingDamage, _fireDamage, _iceDamage) <= 0)
+            return;
+
+        bool canApplyIgnite = _fireDamage > _iceDamage && _fireDamage > _lightingDamage;
+        bool canApplyChill = _iceDamage > _fireDamage && _iceDamage > _lightingDamage;
+        bool canApplyShock = _lightingDamage > _fireDamage && _lightingDamage > _iceDamage;
+
+        //如果出现两种伤害相同时的处理方法
+        while(!canApplyIgnite && !canApplyChill && !canApplyShock)
+        {
+            int ch = Random.Range(0, 3);
+            if(ch == 0 && _fireDamage > 0)
+            {
+                canApplyIgnite = true;
+                _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
+                return;
+            }
+            else if(ch == 1 && _iceDamage > 0)
+            {
+                canApplyChill = true;
+                _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
+                return;
+            }
+            else if(ch == 2 && _lightingDamage > 0)
+            {
+                canApplyChill = true;
+                _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
+                return;
+            }
+        }
+        if (canApplyIgnite)
+            _targetStats.SetIgniteDamage(Mathf.RoundToInt(_fireDamage * .15f));
+        _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
     }
 
     private static int CheckTargetResistance(CharacterStats targetStats, int totleMagicaDamage)
     {
+        //计算魔法伤害
         totleMagicaDamage -= (targetStats.magicResisitance.GetValue() * 2 + targetStats.intellgence.GetValue());
         totleMagicaDamage = Mathf.Clamp(totleMagicaDamage, 0, int.MaxValue);
         return totleMagicaDamage;
@@ -72,10 +146,21 @@ public class CharacterStats : MonoBehaviour
         {
             return;
         }
-
-        isIgnited = _ignite;
-        isChilded = _chill;
-        isShocked = _shock;
+        if (_ignite)
+        {
+            isIgnited = _ignite;
+            ignitedTimer = 2;
+        }
+        if (_chill)
+        {
+            isChilded = _chill;
+            chilledTimer = 2;
+        }
+        if (_shock)
+        {
+            isShocked = _shock;
+            shockedTimer = 2;
+        }
     }
 
     private int CalculateCriticalDamage(int _damage)
@@ -118,6 +203,9 @@ public class CharacterStats : MonoBehaviour
         if (currentHealth <= 0)
             Die();
     }
+
+    public void SetIgniteDamage(int _damage) => ignitDamage = _damage;
+
     protected virtual void Die()
     {
 
