@@ -25,6 +25,8 @@ public class Entity : MonoBehaviour
 
     public int facingDir = 1;
     protected bool isFacingRight = true;
+
+    public System.Action onFilpped;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -64,6 +66,9 @@ public class Entity : MonoBehaviour
         facingDir = -1 * facingDir;
         isFacingRight = !isFacingRight;
         transform.Rotate(0, 180, 0);
+
+        if (onFilpped != null)
+            onFilpped();
     }
     public void FilpController(float _x)
     {
