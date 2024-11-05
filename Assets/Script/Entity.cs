@@ -102,4 +102,13 @@ public class Entity : MonoBehaviour
 
     }
     public virtual void DestroyThis() => Destroy(gameObject);
+
+    public virtual void SlowEntityBy(float _slowPercentage, float _flowDuration)
+    {
+
+    }
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
 }

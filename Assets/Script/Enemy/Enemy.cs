@@ -17,7 +17,7 @@ public class Enemy : Entity
     public float moveSpeed;
     public float idleTime;
     public float battleTime;
-    private float initMoveSpeed;
+    private float defaultMoveSpeed;
 
     [Header("Attack Info")]
     public float attackDistance;
@@ -34,7 +34,7 @@ public class Enemy : Entity
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
-        initMoveSpeed = moveSpeed;
+        defaultMoveSpeed = moveSpeed;
     }
     protected override void Update()
     {
@@ -72,7 +72,7 @@ public class Enemy : Entity
         }
         else
         {
-            moveSpeed = initMoveSpeed;
+            moveSpeed = defaultMoveSpeed;
             anim.speed = 1;
         }
     }
@@ -87,5 +87,18 @@ public class Enemy : Entity
         base.OnDrawGizmos();
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + attackDistance * facingDir, wallCheck.position.y));
+    }
+
+    public override void SlowEntityBy(float _slowPercentage, float _flowDuration)
+    {
+        defaultMoveSpeed = defaultMoveSpeed * (1 - _slowPercentage);
+        anim.speed  = anim.speed * (1 - _slowPercentage);
+        Invoke("ReturnDefaultSpeed", _flowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+        moveSpeed = defaultMoveSpeed;
     }
 }

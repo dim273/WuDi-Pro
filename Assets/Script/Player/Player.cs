@@ -9,35 +9,37 @@ public class Player : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float jumpForce;
+    private float defaultMoveSpeed;
+    private float defaultJumpForce;
 
     [Header("Dash Info")]
     [SerializeField] private float dashCoolDown;
     public float dashingTime;
     public int dashSpeed;
     private float dashTime;
-    public float dashDir {  get; private set; }
+    public float dashDir { get; private set; }
     public bool canDash;
-    
+
 
     [Header("Attack Detail")]
     public Vector2[] attackMovement;
     public float counterAttackDuration;
 
-    public bool inBusy {  get; private set; }
-    public SkillManager skill {  get; private set; }
+    public bool inBusy { get; private set; }
+    public SkillManager skill { get; private set; }
     public GameObject sword;
     #region state
-    public PlayerStateMachine stateMachine {  get; private set; }
+    public PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
     public PlayerAirState airState { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerWallSildeState wallState { get; private set; }
-    public PlayerWallJumpState wallJump {  get; private set; }  
+    public PlayerWallJumpState wallJump { get; private set; }
     public PlayerPrimaryAttackState primaryAttack { get; private set; }
     public PlayerCounterAttackState counterAttack { get; private set; }
-    public PlayerAimSwordState aimSword { get; private set; }   
+    public PlayerAimSwordState aimSword { get; private set; }
     public PlayerCatchSwordState catchSword { get; private set; }
     public PlayerBlackHoleState blackHole { get; private set; }
     public PlayerDeathState deathState { get; private set; }
@@ -66,6 +68,9 @@ public class Player : Entity
         base.Start();
         stateMachine.Initialize(idleState);
         skill = SkillManager.instance;
+
+        defaultJumpForce = jumpForce;
+        defaultMoveSpeed = moveSpeed;
     }
     protected override void Update()
     {
@@ -86,8 +91,8 @@ public class Player : Entity
         dashTime -= Time.deltaTime;
         if (IsWallDetected())
             return;
-        
-        if(Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.CanUseSkill() && canDash)
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.CanUseSkill() && canDash)
         {
             //dashTime = dashCoolDown;
             dashDir = Input.GetAxisRaw("Horizontal");
@@ -117,5 +122,21 @@ public class Player : Entity
     {
         base.Die();
         stateMachine.ChangeState(deathState);
+    }
+
+    public override void SlowEntityBy(float _slowPercentage, float _flowDuration)
+    {
+        jumpForce = jumpForce * (1 - _slowPercentage);
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        anim.speed = anim.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed", _flowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+        jumpForce = defaultJumpForce;
+        moveSpeed = defaultMoveSpeed;
     }
 }
