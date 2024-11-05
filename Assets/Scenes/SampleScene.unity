@@ -637,6 +637,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: e1c22167d2e59af478062cf124a3ceb8, type: 2}
+  chillColor:
+  - {r: 1, g: 0.9223774, b: 0.31132066, a: 1}
+  - {r: 1, g: 0.9655816, b: 0.73899364, a: 1}
+  igniteColor:
+  - {r: 1, g: 0.264707, b: 0.2358489, a: 1}
+  - {r: 1, g: 0.56289303, b: 0.56289303, a: 1}
+  shockColor:
+  - {r: 0.33414403, g: 0.5949309, b: 0.9748427, a: 1}
+  - {r: 0.3372549, g: 0.59607846, b: 0.9764706, a: 1}
 --- !u!1 &403754187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1109,7 @@ MonoBehaviour:
     baseValue: 10
     modifiers: 
   maxHealth:
-    baseValue: 60
+    baseValue: 10000
     modifiers: 
   armor:
     baseValue: 2
@@ -1118,10 +1127,10 @@ MonoBehaviour:
     baseValue: 150
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   iceDamage:
-    baseValue: 0
+    baseValue: 6
     modifiers: 
   lightingDamage:
     baseValue: 0
@@ -1129,6 +1138,7 @@ MonoBehaviour:
   isIgnited: 0
   isChilded: 0
   isShocked: 0
+  ailmentDuration: 3
   currentHealth: 0
 --- !u!1 &855733969
 GameObject:
@@ -12562,9 +12572,133 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 160499598306237917, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160499598306237917, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160499598306237917, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[0].b
+      value: 0.09119487
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[0].g
+      value: 0.831925
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[1].b
+      value: 0.85849047
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[1].g
+      value: 0.9842767
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: chillColor.Array.data[1].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[0].b
+      value: 0.9748427
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[0].g
+      value: 0.5949309
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[0].r
+      value: 0.33414403
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[1].b
+      value: 0.9764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[1].g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: shockColor.Array.data[1].r
+      value: 0.3372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[0].b
+      value: 0.2358489
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[0].g
+      value: 0.264707
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[1].b
+      value: 0.56289303
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[1].g
+      value: 0.56289303
+      objectReference: {fileID: 0}
+    - target: {fileID: 841204886006543016, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: igniteColor.Array.data[1].r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947353685545626804, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: ailmentDuration
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4947353685545626804, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: armor.baseValue

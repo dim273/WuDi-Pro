@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    private EntityFX fx;
+
     [Header("Major stats")]
     public Stat strength;      //力量，每一点可以提供1点物理伤害
     public Stat agility;      //敏捷，每一点可以提供1%攻速加成(40%为上限)和1%暴击率加成(20%为上限)
@@ -29,6 +32,7 @@ public class CharacterStats : MonoBehaviour
     public bool isChilded;
     public bool isShocked;
 
+    [SerializeField] private float ailmentDuration = 3;
     private float ignitedTimer;
     private float chilledTimer;
     private float shockedTimer;
@@ -45,6 +49,7 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealth = GetMaxHealthValue();
         critPower.SetDefaultValue(150);
+        fx = GetComponentInChildren<EntityFX>();
     }
     protected virtual void Update()
     {
@@ -151,17 +156,20 @@ public class CharacterStats : MonoBehaviour
         if (_ignite)
         {
             isIgnited = _ignite;
-            ignitedTimer = 2;
+            ignitedTimer = ailmentDuration;
+            fx.IgniteFxFor(ailmentDuration);
         }
         if (_chill)
         {
             isChilded = _chill;
-            chilledTimer = 2;
+            chilledTimer = ailmentDuration;
+            fx.ChillFxFor(ailmentDuration);
         }
         if (_shock)
         {
             isShocked = _shock;
-            shockedTimer = 2;
+            shockedTimer = ailmentDuration;
+            fx.ShockFxFor(ailmentDuration);
         }
     }
 
@@ -184,14 +192,13 @@ public class CharacterStats : MonoBehaviour
     private int CheckTargetArmor(CharacterStats _targetStats, int totleDamage)
     {
         int value = _targetStats.armor.GetValue();
+        if (_targetStats.isShocked)
+            value = (int)((int)value * 0.8);
+
         if(value >= totleDamage)
-        {
             return 1;
-        }
         else
-        {
             return totleDamage - value; 
-        }
     }
 
     protected virtual void TakeDamage(int _damage)
