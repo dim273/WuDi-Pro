@@ -44,6 +44,7 @@ public class CharacterStats : MonoBehaviour
     private int shockDamage;
 
     public System.Action onHealthChanged;
+    protected bool isDead = false;
 
     [SerializeField] public int currentHealth;
 
@@ -61,47 +62,51 @@ public class CharacterStats : MonoBehaviour
         chilledTimer -= Time.deltaTime;
         ignitedTimer -= Time.deltaTime;
 
-        if(shockedTimer < 0)
+        if (shockedTimer < 0)
             isShocked = false;
 
-        if(chilledTimer < 0)
+        if (chilledTimer < 0)
             isChilded = false;
 
-        if(ignitedTimer < 0)
+        if (ignitedTimer < 0)
             isIgnited = false;
 
-        if(ignitDamageTimer < 0 && isIgnited)
+        if(isIgnited && !isDead)
+            ApplyIgnited();
+
+    }
+
+    private void ApplyIgnited()
+    {
+        if (ignitDamageTimer < 0)
         {
-            Debug.Log("ÊÜµ½µÄ»ðÑæÉËº¦£º" + ignitDamage);
-
             DecreaseHealth(ignitDamage);
-
             if (currentHealth <= 0)
             {
                 Die();
             }
             ignitDamageTimer = ignitedCoolDown;
         }
-
     }
-    public virtual void DoDamage(CharacterStats _targetStats)
+
+    public virtual void DoDamage(CharacterStats _targetStats, int baseDamage)
     {
-        int totleDamage = damage.GetValue() + strength.GetValue();
+        int totleDamage = damage.GetValue() + strength.GetValue() + baseDamage;
         if (CanCrit())
         {
             totleDamage = CalculateCriticalDamage(totleDamage);
         }
         totleDamage = CheckTargetArmor(_targetStats, totleDamage);
-        //_targetStats.TakeDamage(totleDamage);
-        DoMagicaDamage(_targetStats);
+        _targetStats.TakeDamage(totleDamage);
+        //DoMagicaDamage(_targetStats);
     }
 
-    public virtual void DoMagicaDamage(CharacterStats _targetStats)
+    public virtual void DoMagicaDamage(CharacterStats _targetStats, int addDamage)
     {
         int _fireDamage = fireDamage.GetValue();
         int _iceDamage = iceDamage.GetValue();
         int _lightingDamage = lightingDamage.GetValue();
-        int totleMagicaDamage = _fireDamage + _iceDamage + _lightingDamage;
+        int totleMagicaDamage = _fireDamage + _iceDamage + _lightingDamage + addDamage;
 
         totleMagicaDamage = CheckTargetResistance(_targetStats,totleMagicaDamage);
         _targetStats.TakeDamage(totleMagicaDamage);
@@ -144,7 +149,7 @@ public class CharacterStats : MonoBehaviour
         _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
     }
 
-    private static int CheckTargetResistance(CharacterStats targetStats, int totleMagicaDamage)
+    private int CheckTargetResistance(CharacterStats targetStats, int totleMagicaDamage)
     {
         //¼ÆËãÄ§·¨ÉËº¦
         totleMagicaDamage -= (targetStats.magicResisitance.GetValue() * 2 + targetStats.intellgence.GetValue());
@@ -192,6 +197,7 @@ public class CharacterStats : MonoBehaviour
 
     private int CalculateCriticalDamage(int _damage)
     {
+        //¼ì²â±©»÷ÉËº¦
         float totleCirticalPower = (critPower.GetValue() + strength.GetValue()) * .01f;
 
         float critDamage = _damage * totleCirticalPower;
@@ -221,7 +227,7 @@ public class CharacterStats : MonoBehaviour
     public virtual void TakeDamage(int _damage)
     {
         //Debug.Log(_damage);
-
+        fx.StartCoroutine("FlashFX");
         DecreaseHealth(_damage);
 
         if (currentHealth <= 0)
@@ -241,9 +247,12 @@ public class CharacterStats : MonoBehaviour
     }
 
     public void SetIgniteDamage(int _damage) => ignitDamage = _damage;
+
     public void SetShockStrikeDamage(int _damage) => shockDamage = _damage;
+
     protected virtual void Die()
     {
-
+        isDead = true;
     }
+
 }

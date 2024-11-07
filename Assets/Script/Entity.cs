@@ -46,7 +46,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Damage()
     {
-        entityFX.StartCoroutine("FlashFX");
+        Debug.Log("error");
     }
 
     #region Collision
@@ -99,7 +99,7 @@ public class Entity : MonoBehaviour
     }
     public virtual void Die()
     {
-
+        
     }
     public virtual void DestroyThis() => Destroy(gameObject);
 

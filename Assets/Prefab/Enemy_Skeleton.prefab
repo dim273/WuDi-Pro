@@ -130,13 +130,13 @@ MonoBehaviour:
     baseValue: 100
     modifiers: 
   armor:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   magicResisitance:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 10
+    baseValue: 0
     modifiers: 0100000003000000
   critChance:
     baseValue: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   isChilded: 0
   isShocked: 0
   ailmentDuration: 3
+  shockStrikePrefab: {fileID: 6815972320271417798, guid: 16419f10f4a4d164183d9882174ec3b3, type: 3}
   currentHealth: 0
 --- !u!70 &5652651011421337849
 CapsuleCollider2D:
@@ -280,6 +281,7 @@ GameObject:
   - component: {fileID: 4241595907115044297}
   - component: {fileID: 5896530319445958888}
   - component: {fileID: 5333145898923362044}
+  - component: {fileID: 1148598173192166013}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -370,6 +372,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1148598173192166013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2991312366597516152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f31bb97c986624ab32cc58e47eeb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3238130991971578221
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +394,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5434029640549821917}
   - component: {fileID: 8791112396988228945}
-  - component: {fileID: 6089960464664750350}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -460,18 +473,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6089960464664750350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3238130991971578221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f31bb97c986624ab32cc58e47eeb3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3633574733165045837
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class ChickenSkill : Skill
                 GameObject newChicken = Instantiate(chickenToSpawn, player.transform.position, Quaternion.identity);
                 chickenLeft.Remove(chickenToSpawn);
                 newChicken.GetComponent<ChickenManager>().SetupChicken(
-                    chickenDuration, canExplode, canMove, moveSpeed, FindClonestEnemy(newChicken.transform));
+                    chickenDuration, canExplode, canMove, moveSpeed, FindClonestEnemy(newChicken.transform),player);
                 if(chickenLeft.Count <= 0)
                 {
                     coolDown = multiCoolDown;
@@ -90,7 +90,7 @@ public class ChickenSkill : Skill
     {
         chickenGameobject = Instantiate(chickenPrefab, player.transform.position, Quaternion.identity);
         ChickenManager newChickenManager = chickenGameobject.GetComponent<ChickenManager>();
-        newChickenManager.SetupChicken(chickenDuration, canExplode, canMove, moveSpeed, FindClonestEnemy(chickenGameobject.transform));
+        newChickenManager.SetupChicken(chickenDuration, canExplode, canMove, moveSpeed, FindClonestEnemy(chickenGameobject.transform), player);
     }
     protected override void Start()
     {

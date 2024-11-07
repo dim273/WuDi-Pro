@@ -16,15 +16,17 @@ public class ChickenManager : MonoBehaviour
     private bool canGrow;
     private float growSpeed = 3;
     private Transform closestEnemy;
+    private Player player;
 
     [SerializeField] private LayerMask whatIsEnemy;
-    public void SetupChicken(float _chickenExistTimer, bool _canExplode, bool _canMove, float _moveSpeed, Transform _closestEnemy)
+    public void SetupChicken(float _chickenExistTimer, bool _canExplode, bool _canMove, float _moveSpeed, Transform _closestEnemy, Player _player)
     {
         chickenExistTimer = _chickenExistTimer;
         canExplode = _canExplode;
         canMove = _canMove;
         moveSpeed = _moveSpeed;
         closestEnemy = _closestEnemy;
+        player = _player;
     }
     private void Update()
     {
@@ -53,8 +55,11 @@ public class ChickenManager : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, cd.radius);
         foreach(Collider2D hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null)
-                hit.GetComponent<Enemy>().Damage();
+            if (hit.GetComponent<EnemyStat>() != null)
+            {
+                EnemyStat enemyStat = hit.GetComponent<EnemyStat>();
+                player.stats.DoMagicaDamage(enemyStat, 0);
+            }
         }
     }
     public void FinishChicken()

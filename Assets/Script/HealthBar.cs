@@ -18,10 +18,9 @@ public class HealthBar : MonoBehaviour
         entity = GetComponentInParent<Entity>();
         myStats = GetComponentInParent<CharacterStats>();
 
-        UpdateHealthUI();
-
         entity.onFilpped += FilpUI;
         myStats.onHealthChanged += UpdateHealthUI;
+        UpdateHealthUI();
     }
 
     private void Update()

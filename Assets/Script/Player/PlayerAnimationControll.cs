@@ -19,7 +19,7 @@ public class PlayerAnimationControll : MonoBehaviour
             if(hit.GetComponent<Enemy>() != null)
             {
                 EnemyStat enemyStat = hit.GetComponent<EnemyStat>();
-                player.stats.DoDamage(enemyStat);
+                player.stats.DoDamage(enemyStat, 0);
             }
         }
     }

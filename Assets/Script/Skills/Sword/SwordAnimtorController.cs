@@ -5,6 +5,11 @@ using UnityEngine;
 public class SwordAnimtorController : MonoBehaviour
 {
     private SwordManager swordManager => GetComponentInParent<SwordManager>();
+    private Player player;
+    private void Start()
+    {
+        player = swordManager.player;
+    }
     private void ReturnSword()
     {
         swordManager.ReturnSword();
@@ -16,7 +21,7 @@ public class SwordAnimtorController : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
-                hit.GetComponent<Enemy>().Damage();
+                player.stats.DoMagicaDamage(hit.GetComponent<EnemyStat>(), 0);
             }
         }
     }

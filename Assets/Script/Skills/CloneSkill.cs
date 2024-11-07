@@ -26,7 +26,8 @@ public class CloneSkill : Skill
             return;
         }
         GameObject newClone = Instantiate(clonePrefah);
-        newClone.GetComponent<CloneManager>().SetupClone(_cloneTransform, cloneDuration, canAttack, _offset, FindClonestEnemy(newClone.transform), canDuplicateClone, chanceToDuplicate);
+        newClone.GetComponent<CloneManager>().SetupClone(_cloneTransform, cloneDuration, canAttack, _offset, 
+            FindClonestEnemy(newClone.transform), canDuplicateClone, chanceToDuplicate, player);
     }
     public void CreateCloneOnStart()
     {

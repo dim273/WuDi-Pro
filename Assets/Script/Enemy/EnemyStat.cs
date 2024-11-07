@@ -6,9 +6,9 @@ public class EnemyStat : CharacterStats
 {
     private Enemy enemy;
 
-    public override void DoDamage(CharacterStats _targetStats)
+    public override void DoDamage(CharacterStats _targetStats, int baseDamage)
     {
-        base.DoDamage(_targetStats);
+        base.DoDamage(_targetStats, baseDamage);
     }
 
     protected override void Die()
@@ -26,6 +26,5 @@ public class EnemyStat : CharacterStats
     public override void TakeDamage(int _damage)
     {
         base.TakeDamage(_damage);
-        enemy.Damage();
     }
 }

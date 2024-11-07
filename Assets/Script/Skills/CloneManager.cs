@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CloneManager : MonoBehaviour
 {
+    private Player player;
     private SpriteRenderer sr;
     private Animator anim;
 
@@ -38,7 +39,7 @@ public class CloneManager : MonoBehaviour
             Destroy(gameObject);
     }
     public void SetupClone(Transform _cloneTransform, float _cloneDuration, bool _canAttack, Vector3 _offset, Transform _closestEnemy,
-                            bool _canDuplicateClone, float _chanceToDuplicate)
+                            bool _canDuplicateClone, float _chanceToDuplicate, Player _player)
     {
         if(_canAttack)
         {
@@ -48,6 +49,7 @@ public class CloneManager : MonoBehaviour
         closestEnemy = _closestEnemy;
         canDuplicateClone = _canDuplicateClone;
         chanceToDuplicate = _chanceToDuplicate;
+        player = _player;
         transform.position = _cloneTransform.position + _offset;
         FacingCloseEnemy();
     }
@@ -62,7 +64,7 @@ public class CloneManager : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
-                hit.GetComponent<Enemy>().Damage();
+                player.stats.DoDamage(hit.GetComponent<EnemyStat>(), 0);
                 if (canDuplicateClone)
                 {
                     if(Random.Range(0, 100) < chanceToDuplicate)

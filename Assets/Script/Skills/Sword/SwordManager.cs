@@ -12,9 +12,9 @@ public class SwordManager : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private CircleCollider2D cd;
-    private Player player;
+    public Player player {  get; private set; }
 
-    private bool canRotate = true;
+    //private bool canRotate = true;
 
     [Header("Bounce Info")]
     private float bounceSpeed;
@@ -72,7 +72,7 @@ public class SwordManager : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, enemyTargets[enemyIndex].position, bounceSpeed * Time.deltaTime);
             if (Vector2.Distance(transform.position, enemyTargets[enemyIndex].position) < .1f)
             {
-                enemyTargets[enemyIndex].GetComponent<Enemy>().Damage();
+                player.stats.DoDamage(enemyTargets[enemyIndex].GetComponent<EnemyStat>(), 0);
                 enemyIndex++;
                 amountOfBouncing--;
                 if (amountOfBouncing == 0)
@@ -129,7 +129,7 @@ public class SwordManager : MonoBehaviour
         if (collision.GetComponent<Enemy>() != null)
         {
             Enemy enemy = collision.GetComponent<Enemy>();
-            enemy.Damage();
+            player.stats.DoDamage(collision.GetComponent<EnemyStat>(), 0);
             if (!isBouncing && pierceAmount <= 0 && !isExplode)
             {
                 enemy.StartCoroutine("FreezeTimeFor", freezeTimeDuration);
@@ -170,7 +170,7 @@ public class SwordManager : MonoBehaviour
         }
         
         //rb.isKinematic = true;
-        canRotate = false;
+        //canRotate = false;
         cd.enabled = false;
         if (isBouncing && enemyTargets.Count > 0)
             return;
