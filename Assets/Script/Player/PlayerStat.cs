@@ -23,7 +23,7 @@ public class PlayerStat : CharacterStats
         base.Start();
     }
 
-    protected override void TakeDamage(int _damage)
+    public override void TakeDamage(int _damage)
     {
         base.TakeDamage(_damage);
         player.Damage();

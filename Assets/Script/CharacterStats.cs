@@ -40,6 +40,8 @@ public class CharacterStats : MonoBehaviour
     private float ignitedCoolDown = .3f;
     private float ignitDamageTimer;
     private int ignitDamage;
+    [SerializeField] private GameObject shockStrikePrefab;
+    private int shockDamage;
 
     public System.Action onHealthChanged;
 
@@ -136,6 +138,8 @@ public class CharacterStats : MonoBehaviour
         }
         if (canApplyIgnite)
             _targetStats.SetIgniteDamage(Mathf.RoundToInt(_fireDamage * .15f));
+        else if (canApplyShock)
+            _targetStats.SetShockStrikeDamage(Mathf.RoundToInt(_lightingDamage * .15f));
 
         _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
     }
@@ -150,18 +154,17 @@ public class CharacterStats : MonoBehaviour
 
     public void ApplyAilments(bool _ignite, bool _chill, bool _shock)
     {
-        if(isChilded || isShocked || isIgnited)
-        {
-            return;
-        }
-        if (_ignite)
+        bool canApplyIgnite = !isIgnited && !isChilded && !isShocked;
+        bool canApplyChill = !isIgnited && !isChilded && !isShocked;
+        bool canApplyShock = !isIgnited && !isChilded;
+
+        if (_ignite && canApplyIgnite)
         {
             isIgnited = _ignite;
             ignitedTimer = ailmentDuration;
             fx.IgniteFxFor(ailmentDuration);
-            
         }
-        if (_chill)
+        if (_chill && canApplyChill)
         {
             isChilded = _chill;
             chilledTimer = ailmentDuration;
@@ -169,11 +172,21 @@ public class CharacterStats : MonoBehaviour
             transform.GetComponent<Entity>().SlowEntityBy(slowPercent, ailmentDuration);
             fx.ChillFxFor(ailmentDuration);
         }
-        if (_shock)
+        if (_shock && canApplyShock)
         {
-            isShocked = _shock;
-            shockedTimer = ailmentDuration;
-            fx.ShockFxFor(ailmentDuration);
+            if (!isShocked)
+            {
+                isShocked = true;
+                
+                shockedTimer = ailmentDuration;
+                fx.ShockFxFor(ailmentDuration);
+            }
+            else
+            {
+                if (GetComponent<Player>() != null) return;
+                GameObject newShockStrike = Instantiate(shockStrikePrefab, transform.position, Quaternion.identity);
+                newShockStrike.GetComponent<ShockThunderController>().Setup(shockDamage, this);
+            }
         }
     }
 
@@ -205,7 +218,7 @@ public class CharacterStats : MonoBehaviour
             return totleDamage - value; 
     }
 
-    protected virtual void TakeDamage(int _damage)
+    public virtual void TakeDamage(int _damage)
     {
         //Debug.Log(_damage);
 
@@ -228,7 +241,7 @@ public class CharacterStats : MonoBehaviour
     }
 
     public void SetIgniteDamage(int _damage) => ignitDamage = _damage;
-
+    public void SetShockStrikeDamage(int _damage) => shockDamage = _damage;
     protected virtual void Die()
     {
 
