@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49398c7ab2147047a48b70aa1fe1a71, type: 3}
   m_Name: Bone
   m_EditorClassIdentifier: 
+  itemType: 0
   itemName: Bone
-  icon: {fileID: -1893456401, guid: a76c2f81bb227494280886b2efeb70c7, type: 3}
+  icon: {fileID: -476279335, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}

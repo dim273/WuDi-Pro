@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49398c7ab2147047a48b70aa1fe1a71, type: 3}
+  m_Name: Oj
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: oj
+  icon: {fileID: -318892005, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
