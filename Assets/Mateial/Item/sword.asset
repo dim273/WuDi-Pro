@@ -16,3 +16,16 @@ MonoBehaviour:
   itemName: sword
   icon: {fileID: -406050819, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 0
+  strength: 0
+  agility: 0
+  intellgence: 0
+  vitality: 0
+  maxHealth: 0
+  armor: 0
+  magicResisitance: 0
+  damage: 40
+  critChance: 10
+  critPower: 10
+  fireDamage: 0
+  iceDamage: 0
+  lightingDamage: 0

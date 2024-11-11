@@ -16,6 +16,7 @@ public class SwordManager : MonoBehaviour
 
     //private bool canRotate = true;
 
+    //
     [Header("Bounce Info")]
     private float bounceSpeed;
     private bool isBouncing;

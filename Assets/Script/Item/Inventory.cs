@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    //单例模式
     public static Inventory instance;
 
+    //建立字典树，储存获取的物品，并且通过ItemData来查找，List用来储存物品的种类，数量，
     public List<InventoryItem> equipment;
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
 
@@ -16,6 +18,7 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> stash;
     public Dictionary<ItemData, InventoryItem> stashDictionary;
 
+    //记录储存的物品在UI上的显示
     [Header("Inventory UI")]
     [SerializeField] private Transform inventorySlotParent;
     [SerializeField] private Transform stashSlotParent;
@@ -66,6 +69,7 @@ public class Inventory : MonoBehaviour
         }
         equipment.Add(newItem);
         equipmentDictionary.Add(newEquipment, newItem);
+        newEquipment.AddModifiers();
         RemoveItem(_item);
     }
 
@@ -75,11 +79,13 @@ public class Inventory : MonoBehaviour
         {
             equipment.Remove(va);
             equipmentDictionary.Remove(oldEquipment);
+            oldEquipment.RemoveModifiers();
         }
     }
 
     private void UpdateSlotUI()
     {
+        //武器槽
         for(int i = 0; i < equipmentSlot.Length; i++)
         {
             foreach(KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
@@ -90,6 +96,8 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+
+        //更新UI的方法：先删除现有的UI的物品，然后在重新更新全部的物品
         for(int i = 0; i < inventoryItemSlot.Length; i++)
         {
             inventoryItemSlot[i].CleanUpSlot();
@@ -110,6 +118,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData _item)
     {
+        //增加物品，武器放一栏，材料放一栏
         if (_item.itemType == ItemType.Equipment)
             AddToInventory(_item);
         else if(_item.itemType == ItemType.Material)

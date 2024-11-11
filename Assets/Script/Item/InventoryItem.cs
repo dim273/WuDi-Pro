@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//建立一个封装类
+//建立一个封装类，即item类
 [Serializable]
 public class InventoryItem
 {

@@ -19,6 +19,7 @@ public class Stat
     }
     public void AddModifier(int _modifier)
     {
+        if (_modifier == 0) return;
         modifiers.Add( _modifier );
     }
     public void SetDefaultValue(int _value)
@@ -28,6 +29,7 @@ public class Stat
 
     public void RemoveModifier(int _modifier)
     {
+        if(_modifier == 0) return;
         modifiers.RemoveAt( _modifier );
     }
 }

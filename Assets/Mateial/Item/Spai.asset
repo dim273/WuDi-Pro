@@ -16,3 +16,16 @@ MonoBehaviour:
   itemName: Spai
   icon: {fileID: 110825167, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 1
+  strength: 0
+  agility: 0
+  intellgence: 0
+  vitality: 0
+  maxHealth: 300
+  armor: 10
+  magicResisitance: 0
+  damage: 0
+  critChance: 0
+  critPower: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightingDamage: 0
