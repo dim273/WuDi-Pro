@@ -73,8 +73,9 @@ public class Inventory : MonoBehaviour
         RemoveItem(_item);
     }
 
-    private void Unequipment(ItemData_Equipment oldEquipment)
+    public void Unequipment(ItemData_Equipment oldEquipment)
     {
+        //if (oldEquipment == null) return;
         if(equipmentDictionary.TryGetValue(oldEquipment, out InventoryItem va))
         {
             equipment.Remove(va);
@@ -118,6 +119,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData _item)
     {
+        //if (_item == null) return;
         //增加物品，武器放一栏，材料放一栏
         if (_item.itemType == ItemType.Equipment)
             AddToInventory(_item);
