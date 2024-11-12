@@ -64,23 +64,25 @@ public class Inventory : MonoBehaviour
         }
         if(oldEquipment != null)
         {
-            Unequipment(oldEquipment);
             AddItem(oldEquipment);
+            Unequipment(oldEquipment);
         }
         equipment.Add(newItem);
         equipmentDictionary.Add(newEquipment, newItem);
-        newEquipment.AddModifiers();
         RemoveItem(_item);
+        newEquipment.AddModifiers();
+        UpdateSlotUI();
     }
 
     public void Unequipment(ItemData_Equipment oldEquipment)
     {
-        //if (oldEquipment == null) return;
-        if(equipmentDictionary.TryGetValue(oldEquipment, out InventoryItem va))
+        if (equipmentDictionary.TryGetValue(oldEquipment, out InventoryItem va))
         {
+            oldEquipment.RemoveModifiers();
+            //AddItem(oldEquipment);
             equipment.Remove(va);
             equipmentDictionary.Remove(oldEquipment);
-            oldEquipment.RemoveModifiers();
+
         }
     }
 
