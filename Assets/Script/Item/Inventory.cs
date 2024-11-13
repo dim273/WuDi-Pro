@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     //单例模式
     public static Inventory instance;
+
+    public List<ItemData> startingItem;
 
     //建立字典树，储存获取的物品，并且通过ItemData来查找，List用来储存物品的种类，数量，
     public List<InventoryItem> equipment;
@@ -48,6 +51,16 @@ public class Inventory : MonoBehaviour
         inventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+
+        AddStartingItem();
+    }
+
+    private void AddStartingItem()
+    {
+        for(int i = 0; i < startingItem.Count; i++)
+        {
+            AddItem(startingItem[i]);
+        }
     }
 
     public void EquipItem(ItemData _item)
@@ -179,6 +192,8 @@ public class Inventory : MonoBehaviour
         UpdateSlotUI();
     }
 
+    public List<InventoryItem> GetStashList() => stash;
+    public List<InventoryItem> GetEquipmentList() => inventory;
     public void Update()
     {
         //if (Input.GetKeyUp(KeyCode.P))

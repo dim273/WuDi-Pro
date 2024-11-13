@@ -221,6 +221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9295b9835c2d84483ee307338a6422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingItem:
+  - {fileID: 11400000, guid: 00712151e7b752d46a59bcbdab79c1d6, type: 2}
+  - {fileID: 11400000, guid: 3a67e912931ee004a8743956a89827be, type: 2}
+  - {fileID: 11400000, guid: 3a67e912931ee004a8743956a89827be, type: 2}
+  - {fileID: 11400000, guid: 3a67e912931ee004a8743956a89827be, type: 2}
+  - {fileID: 11400000, guid: 1f737ac951ec4e645af35691de492595, type: 2}
   equipment: []
   inventory: []
   stash: []
@@ -1439,6 +1445,7 @@ GameObject:
   - component: {fileID: 714448799}
   - component: {fileID: 714448800}
   - component: {fileID: 714448801}
+  - component: {fileID: 714448802}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1587,7 +1594,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 10000
+    baseValue: 100
     modifiers: 
   armor:
     baseValue: 2
@@ -1618,7 +1625,25 @@ MonoBehaviour:
   isShocked: 0
   ailmentDuration: 3
   shockStrikePrefab: {fileID: 6815972320271417798, guid: 16419f10f4a4d164183d9882174ec3b3, type: 3}
+  isDead: 0
   currentHealth: 0
+--- !u!114 &714448802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714448796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317afc2487b94a74f906bb2c63a01246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleDrop: []
+  dropChance: 
+  doubleDropChance: 0
+  dropPrefab: {fileID: 8839563852025647273, guid: 0dfb817c6c63d4847af17a8cd6ef3939, type: 3}
+  chanceToLoseItem: 50
 --- !u!224 &762306662 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4734038533247756813, guid: f991bfcb495533348bcdd7e433898b63, type: 3}
@@ -14863,6 +14888,10 @@ PrefabInstance:
     - target: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947353685545626804, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: damage.baseValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6735176155699381874, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_LocalPosition.x

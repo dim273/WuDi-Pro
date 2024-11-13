@@ -16,7 +16,7 @@ public class ItemDrop : MonoBehaviour
     [SerializeField] private GameObject dropPrefab;
     //[SerializeField] private ItemData item;
 
-    public void GenerateDrop()
+    public virtual void GenerateDrop()
     {
         //判断物品是否掉落
         for(int i = 0; i < possibleDrop.Length; i++)
@@ -36,7 +36,7 @@ public class ItemDrop : MonoBehaviour
         }
     }
 
-    public void DropItem(ItemData _itemData)
+    protected void DropItem(ItemData _itemData)
     {
         //生成掉落物品
         GameObject newDrop = Instantiate(dropPrefab, transform.position, Quaternion.identity);

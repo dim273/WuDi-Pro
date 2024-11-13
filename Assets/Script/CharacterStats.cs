@@ -44,7 +44,7 @@ public class CharacterStats : MonoBehaviour
     private int shockDamage;
 
     public System.Action onHealthChanged;
-    protected bool isDead = false;
+    public bool isDead = false;
 
     [SerializeField] public int currentHealth;
 
