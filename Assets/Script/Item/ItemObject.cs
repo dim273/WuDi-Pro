@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
+    private SpriteRenderer sr;
+
     [SerializeField] private ItemData itemData;
-    private void OnValidate()
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Vector2 velocity;
+
+    private void SetupVisuals()
     {
+        if (itemData == null) return;
+
         GetComponent<SpriteRenderer>().sprite = itemData.icon;
-        gameObject.name = "Item object - " + itemData.itemName;
+        gameObject.name = itemData.name;
     }
 
-    void Update()
+    public void SetupItem(ItemData _itemData, Vector2 _velocity)
     {
-        
+        itemData = _itemData;
+        rb.velocity = _velocity;
+        SetupVisuals();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public void PickupItem()
     {
-        if(collision.GetComponent<Player>()  != null)
-        {
-            Inventory.instance.AddItem(itemData);
-            Destroy(gameObject);
-        }
+        //捡到物品添加到物品栏
+        Inventory.instance.AddItem(itemData);
+        Destroy(gameObject);
     }
 }

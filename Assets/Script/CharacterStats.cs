@@ -230,7 +230,7 @@ public class CharacterStats : MonoBehaviour
         fx.StartCoroutine("FlashFX");
         DecreaseHealth(_damage);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
             Die();
     }
 

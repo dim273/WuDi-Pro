@@ -14,10 +14,10 @@ public class UI_EquipmentSlot : UI_ItemSlot
 
     public override void OnPointerDown(PointerEventData equipmentData)
     {
-        if (item == null) return;
+        if (item == null) return;       //避免点击空装备槽出现报错
 
-        Inventory.instance.AddItem(item.data as ItemData_Equipment);
-        Inventory.instance.Unequipment(item.data as ItemData_Equipment);
+        Inventory.instance.AddItem(item.data as ItemData_Equipment);        //将装备重新放回装备栏
+        Inventory.instance.Unequipment(item.data as ItemData_Equipment);    //从装备槽卸下装备
         CleanUpSlot();
         
     }

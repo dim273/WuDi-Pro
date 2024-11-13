@@ -6,6 +6,9 @@ using UnityEngine;
 public class EnemyStat : CharacterStats
 {
     private Enemy enemy;
+    private ItemDrop myDropSystem;
+
+    //敌人等级设置
     [Header("Level details")]
     [SerializeField] private int level = 1;
     [Range(0f, 1f)]
@@ -19,12 +22,14 @@ public class EnemyStat : CharacterStats
     {
         base.Die();
         enemy.Die();
+        myDropSystem.GenerateDrop();
     }
 
     protected override void Start()
     {
         ApplyLevelModifier();
         enemy = GetComponent<Enemy>();
+        myDropSystem = GetComponent<ItemDrop>();
         base.Start();
     }
 

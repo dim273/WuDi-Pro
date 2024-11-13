@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4048451051674644415}
   - component: {fileID: 4947353685545626804}
   - component: {fileID: 5652651011421337849}
+  - component: {fileID: 9054316868617286351}
   m_Layer: 7
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -159,6 +160,8 @@ MonoBehaviour:
   ailmentDuration: 3
   shockStrikePrefab: {fileID: 6815972320271417798, guid: 16419f10f4a4d164183d9882174ec3b3, type: 3}
   currentHealth: 0
+  level: 0
+  percantageModifier: 0.17
 --- !u!70 &5652651011421337849
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,6 +197,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.06805897, y: -0.25320637}
   m_Size: {x: 0.63611794, y: 1.5064127}
   m_Direction: 0
+--- !u!114 &9054316868617286351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636812619740180783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80235b933fb9d0e4bab367a2b4605cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleDrop:
+  - {fileID: 11400000, guid: 3a67e912931ee004a8743956a89827be, type: 2}
+  - {fileID: 11400000, guid: e7ba5375d376c5146bc8ec228cfcc725, type: 2}
+  - {fileID: 11400000, guid: 335a06b195876f147b9a62568b213d69, type: 2}
+  dropChance: 320000000a00000002000000
+  doubleDropChance: 10
+  dropPrefab: {fileID: 8839563852025647273, guid: 0dfb817c6c63d4847af17a8cd6ef3939, type: 3}
 --- !u!1 &2885369603038798496
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +566,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -63297037
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5b51c51f8a5839a47a805d7f9d0e7d10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -662,7 +684,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -63297037
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 720810027, guid: e559f7d86f86d934c83d9b17a1b68286, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
