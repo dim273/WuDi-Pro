@@ -1594,7 +1594,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 2
@@ -1618,7 +1618,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   lightingDamage:
-    baseValue: 10
+    baseValue: 0
     modifiers: 
   isIgnited: 0
   isChilded: 0
@@ -14888,6 +14888,10 @@ PrefabInstance:
     - target: {fileID: 2636812619740180783, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947353685545626804, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
+      propertyPath: level
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4947353685545626804, guid: 5775e45b84de3094eb6a6ec42064f104, type: 3}
       propertyPath: damage.baseValue

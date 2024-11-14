@@ -194,12 +194,16 @@ public class Inventory : MonoBehaviour
 
     public List<InventoryItem> GetStashList() => stash;
     public List<InventoryItem> GetEquipmentList() => inventory;
-    public void Update()
+    public ItemData_Equipment GetEquipment(EquipmentType _type)
     {
-        //if (Input.GetKeyUp(KeyCode.P))
-        //{
-        //    ItemData newItem = inventory[inventory.Count - 1].data;
-        //    RemoveItem(newItem);
-        //}
+        ItemData_Equipment equipedItem = null;
+
+        foreach(KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
+        {
+            if(item.Key.equipmentType == _type)
+                equipedItem = item.Key;
+        }
+
+        return equipedItem;
     }
 }

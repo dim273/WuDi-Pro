@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4066b660d81bed9429f9aeb4d090ef1d, type: 3}
-  m_Name: sword
+  m_Name: ThunderBlade
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: sword
+  itemName: Thunder Blade
   icon: {fileID: -406050819, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 0
+  itemEffects:
+  - {fileID: 11400000, guid: c2c185f668452c842be45ad1533aeeab, type: 2}
+  coolDown: 5
   strength: 0
   agility: 0
   intellgence: 0
@@ -23,7 +26,7 @@ MonoBehaviour:
   maxHealth: 0
   armor: 0
   magicResisitance: 0
-  damage: 40
+  damage: 10
   critChance: 10
   critPower: 10
   fireDamage: 0

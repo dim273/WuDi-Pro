@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4066b660d81bed9429f9aeb4d090ef1d, type: 3}
-  m_Name: Pasta
+  m_Name: CommonSword
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Paste
+  itemName: Common Sword
   icon: {fileID: -670118555, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 0
+  itemEffects: []
   strength: 0
   agility: 0
   intellgence: 0

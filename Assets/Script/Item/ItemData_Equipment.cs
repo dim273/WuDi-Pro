@@ -12,6 +12,8 @@ public enum EquipmentType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
+    public ItemEffect[] itemEffects;     //效果列表
+    public float coolDown;          //该武器特殊效果的冷却时间
 
     [Header("Major stats")]
     public int strength;      //力量，每一点可以提供1点物理伤害
@@ -74,5 +76,14 @@ public class ItemData_Equipment : ItemData
         playerstats.fireDamage.RemoveModifier(fireDamage);
         playerstats.iceDamage.RemoveModifier(iceDamage);
         playerstats.lightingDamage.RemoveModifier(lightingDamage);
+    }
+
+    public void ExcuteItemEffect(Transform _enemyPosition)
+    {
+        //执行效果
+        foreach(var item in itemEffects)
+        {
+            item.ExecuteEffect(_enemyPosition);
+        }
     }
 }
