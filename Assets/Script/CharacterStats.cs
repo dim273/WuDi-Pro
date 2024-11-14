@@ -142,7 +142,11 @@ public class CharacterStats : MonoBehaviour
             }
         }
         if (canApplyIgnite)
-            _targetStats.SetIgniteDamage(Mathf.RoundToInt(_fireDamage * .15f));
+        {
+            int _damage = Mathf.RoundToInt(_fireDamage * .15f);
+            _damage = Mathf.Max(1, _damage);
+            _targetStats.SetIgniteDamage(Mathf.RoundToInt(_damage));
+        }
         else if (canApplyShock)
             _targetStats.SetShockStrikeDamage(Mathf.RoundToInt(_lightingDamage * .15f));
 
