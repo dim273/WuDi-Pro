@@ -4,14 +4,20 @@ public enum EquipmentType
 {
     Weapon,
     Armor,
-    Amulet,
-    Flask
+    Ring,
+    Amulet
 }
-
+public enum SkillType
+{
+    Empty,
+    Attack,
+    Gain
+}
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Equipment")]
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
+    public SkillType skillType;         //武器技能类型
     public ItemEffect[] itemEffects;     //效果列表
     public float coolDown;          //该武器特殊效果的冷却时间
 
@@ -72,7 +78,7 @@ public class ItemData_Equipment : ItemData
         playerstats.damage.RemoveModifier(damage);  
         playerstats.critChance.RemoveModifier(critChance);
         playerstats.critPower.RemoveModifier(critPower);
-
+        
         playerstats.fireDamage.RemoveModifier(fireDamage);
         playerstats.iceDamage.RemoveModifier(iceDamage);
         playerstats.lightingDamage.RemoveModifier(lightingDamage);

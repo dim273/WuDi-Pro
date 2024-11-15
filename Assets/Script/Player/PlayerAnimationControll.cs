@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class PlayerAnimationControll : MonoBehaviour
 {
     private Player player => GetComponentInParent<Player>();
-    private float equipmentCD;  //装备技能的冷却
 
     private void Update()
     {
-        equipmentCD -= Time.deltaTime;
+       
     }
     private void AnimationTriggers()
     {
@@ -28,11 +27,7 @@ public class PlayerAnimationControll : MonoBehaviour
                 player.stats.DoDamage(enemyStat, 0);
 
                 //冷却好了并且装备的武器有技能则释放技能
-                if (Inventory.instance.GetEquipment(EquipmentType.Weapon) != null && equipmentCD < 0)
-                {
-                    Inventory.instance.GetEquipment(EquipmentType.Weapon).ExcuteItemEffect(enemyStat.transform);
-                    equipmentCD = Inventory.instance.GetEquipment(EquipmentType.Weapon).coolDown;
-                }
+                Inventory.instance.UseEquipmentSkillOnAttack(enemyStat.transform);
             }
         }
     }

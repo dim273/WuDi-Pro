@@ -245,6 +245,17 @@ public class CharacterStats : MonoBehaviour
             onHealthChanged();
     }
 
+    public virtual void IncreaseHealth(int _amount)
+    {
+        //回复生命值的函数
+        if(isDead) return;
+
+        if (currentHealth + _amount <= GetMaxHealthValue())
+            currentHealth += _amount;
+
+        else
+            currentHealth = GetMaxHealthValue();
+    }
     public int GetMaxHealthValue()
     {
         return maxHealth.GetValue() + vitality.GetValue() * 5;

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ public class Inventory : MonoBehaviour
     //建立字典树，储存获取的物品，并且通过ItemData来查找，List用来储存物品的种类，数量，
     public List<InventoryItem> equipment;
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
+    private float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
 
     public List<InventoryItem> inventory;
     public Dictionary<ItemData, InventoryItem> inventoryDictionary;
@@ -53,6 +55,14 @@ public class Inventory : MonoBehaviour
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
 
         AddStartingItem();
+    }
+
+    private void Update()
+    {
+        equipmentSkillTimer[0] -= Time.deltaTime;
+        equipmentSkillTimer[1] -= Time.deltaTime;
+        equipmentSkillTimer[2] -= Time.deltaTime;
+        equipmentSkillTimer[3] -= Time.deltaTime;
     }
 
     private void AddStartingItem()
@@ -193,17 +203,61 @@ public class Inventory : MonoBehaviour
     }
 
     public List<InventoryItem> GetStashList() => stash;
+
     public List<InventoryItem> GetEquipmentList() => inventory;
+
     public ItemData_Equipment GetEquipment(EquipmentType _type)
     {
         ItemData_Equipment equipedItem = null;
-
         foreach(KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
         {
             if(item.Key.equipmentType == _type)
                 equipedItem = item.Key;
         }
-
         return equipedItem;
+    }
+
+    public void UseEquipmentSkillOnAttack(Transform _enemy)
+    {
+        ItemData_Equipment _Equipment = null;
+        //攻击时遍历全部已装备的装备，装备技能为攻击类型的装备则释放技能
+        foreach(KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
+        {
+            if(item.Key.skillType == SkillType.Attack)
+            {
+                _Equipment = item.Key;
+                switch (_Equipment.equipmentType)
+                {
+                    case EquipmentType.Weapon:
+                        if (equipmentSkillTimer[0] < 0)
+                        {
+                            _Equipment.ExcuteItemEffect(_enemy);
+                            equipmentSkillTimer[0] = _Equipment.coolDown;
+                        }
+                        break;
+                    case EquipmentType.Armor:
+                        if (equipmentSkillTimer[1] < 0)
+                        {
+                            _Equipment.ExcuteItemEffect(_enemy);
+                            equipmentSkillTimer[1] = _Equipment.coolDown;
+                        }
+                        break;
+                    case EquipmentType.Ring:
+                        if (equipmentSkillTimer[2] < 0)
+                        {
+                            _Equipment.ExcuteItemEffect(_enemy);
+                            equipmentSkillTimer[2] = _Equipment.coolDown;
+                        }
+                        break;
+                    case EquipmentType.Amulet:
+                        if (equipmentSkillTimer[3] < 0)
+                        {
+                            _Equipment.ExcuteItemEffect(_enemy);
+                            equipmentSkillTimer[3] = _Equipment.coolDown;
+                        }
+                        break;
+                }
+            }
+        }
     }
 }

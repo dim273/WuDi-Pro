@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4066b660d81bed9429f9aeb4d090ef1d, type: 3}
-  m_Name: IceAndFireSword
+  m_Name: CommonSword
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: "\u51B0\u4E0E\u706B\u4E4B\u79CB"
-  icon: {fileID: 161638925, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
+  itemName: Common Sword
+  icon: {fileID: -670118555, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 0
-  itemEffects:
-  - {fileID: 11400000, guid: e6ed4c9961c7d5949a6ae553416fbd75, type: 2}
+  skillType: 0
+  itemEffects: []
   coolDown: 0
   strength: 0
   agility: 0
@@ -26,9 +26,9 @@ MonoBehaviour:
   maxHealth: 0
   armor: 0
   magicResisitance: 0
-  damage: 5
+  damage: 1
   critChance: 0
   critPower: 0
-  fireDamage: 5
-  iceDamage: 5
+  fireDamage: 0
+  iceDamage: 0
   lightingDamage: 0
