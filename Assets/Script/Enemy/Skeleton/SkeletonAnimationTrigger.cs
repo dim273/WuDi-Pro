@@ -30,7 +30,8 @@ public class SkeletonAnimationTrigger : MonoBehaviour
     private IEnumerator RecoverSpeed()
     {
         yield return new WaitForSeconds(.5f);
-        enemy.anim.speed = 1f;
+        if(enemy.anim.speed > 0)
+            enemy.anim.speed = 1f;
     }
 
     private void OpenCounterAttackWindow() => enemy.OpenCounterAttackWindow();

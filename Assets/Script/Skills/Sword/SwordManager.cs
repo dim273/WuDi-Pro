@@ -133,7 +133,7 @@ public class SwordManager : MonoBehaviour
             player.stats.DoDamage(collision.GetComponent<EnemyStat>(), 0);
             if (!isBouncing && pierceAmount <= 0 && !isExplode)
             {
-                enemy.StartCoroutine("FreezeTimeFor", freezeTimeDuration);
+                enemy.FreezeStart(freezeTimeDuration);
             } 
             else if(!isBouncing && pierceAmount <= 0 && isExplode)
             {

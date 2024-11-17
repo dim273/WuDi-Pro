@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Item effect/Heal effect")]
+[CreateAssetMenu(fileName = "Heal effect", menuName = "Data/Item effect/Heal effect")]
 public class Heal_Effect : ItemEffect
 {
     [Range(0f, 1f)]

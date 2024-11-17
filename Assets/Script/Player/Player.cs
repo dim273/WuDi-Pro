@@ -78,6 +78,7 @@ public class Player : Entity
         stateMachine.currentState.Update();
         CheckDashInput();
         CreateChicken();
+        AmuletUse();
     }
 
     private void CreateChicken()
@@ -138,5 +139,15 @@ public class Player : Entity
         base.ReturnDefaultSpeed();
         jumpForce = defaultJumpForce;
         moveSpeed = defaultMoveSpeed;
+    }
+    private void AmuletUse()
+    {
+        if (!stats.isDead && Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("1");
+            ItemData_Equipment amulet = Inventory.instance.GetEquipment(EquipmentType.Amulet);
+            if (amulet == null) return;
+            amulet.ExcuteItemEffect(transform);
+        }
     }
 }

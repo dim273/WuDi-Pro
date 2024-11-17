@@ -76,6 +76,18 @@ public class CharacterStats : MonoBehaviour
 
     }
 
+    public void AddBuff(int _modifier, float _duration, Stat _buffToAdd)
+    {
+        StartCoroutine(BuffCoroutine(_modifier, _duration, _buffToAdd));
+    }
+
+    private IEnumerator BuffCoroutine(int _modifier, float _duration, Stat _buffToModify)
+    {
+        _buffToModify.AddModifier(_modifier);
+        yield return new WaitForSeconds(_duration);
+        _buffToModify.RemoveModifier(_modifier);
+    }
+
     private void ApplyIgnited()
     {
         if (ignitDamageTimer < 0)
@@ -256,6 +268,7 @@ public class CharacterStats : MonoBehaviour
         else
             currentHealth = GetMaxHealthValue();
     }
+
     public int GetMaxHealthValue()
     {
         return maxHealth.GetValue() + vitality.GetValue() * 5;

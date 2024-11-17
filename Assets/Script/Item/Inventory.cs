@@ -15,7 +15,6 @@ public class Inventory : MonoBehaviour
     //建立字典树，储存获取的物品，并且通过ItemData来查找，List用来储存物品的种类，数量，
     public List<InventoryItem> equipment;
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
-    private float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
 
     public List<InventoryItem> inventory;
     public Dictionary<ItemData, InventoryItem> inventoryDictionary;
@@ -32,6 +31,10 @@ public class Inventory : MonoBehaviour
     private UI_ItemSlot[] inventoryItemSlot;
     private UI_ItemSlot[] stashItemSlot;
     private UI_EquipmentSlot[] equipmentSlot;
+
+    [Header("装备冷却")]
+    private float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
+    private float armorSkillUsedTime;       //上次使用装备冷却的时间
     private void Awake()
     {
         if(instance == null)
@@ -259,5 +262,19 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool CanUseArmor()
+    {
+        //检测是否可以使用装备技能
+        ItemData_Equipment _armor = GetEquipment(EquipmentType.Armor);
+        if (_armor == null) return false;
+
+        if(Time.time > armorSkillUsedTime + _armor.coolDown)
+        {
+            armorSkillUsedTime = Time.time;
+            return true;
+        }
+        return false;
     }
 }

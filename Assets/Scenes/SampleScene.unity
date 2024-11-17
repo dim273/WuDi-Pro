@@ -229,6 +229,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1f737ac951ec4e645af35691de492595, type: 2}
   - {fileID: 11400000, guid: 2d71dc03b74db0c469727ef22e2daaac, type: 2}
   - {fileID: 11400000, guid: 335a06b195876f147b9a62568b213d69, type: 2}
+  - {fileID: 11400000, guid: 45d7e12cfb10a7e4197d70cb2498f592, type: 2}
   equipment: []
   inventory: []
   stash: []
@@ -1596,7 +1597,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 1000
+    baseValue: 500
     modifiers: 
   armor:
     baseValue: 2

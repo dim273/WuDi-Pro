@@ -28,4 +28,13 @@ public class PlayerStat : CharacterStats
     {
         base.TakeDamage(_damage);
     }
+
+    protected override void DecreaseHealth(int _damage)
+    {
+        base.DecreaseHealth(_damage);
+
+        ItemData_Equipment armor = Inventory.instance.GetEquipment(EquipmentType.Armor);
+        if (armor != null)
+            armor.ExcuteItemEffect(player.transform);
+    }
 }

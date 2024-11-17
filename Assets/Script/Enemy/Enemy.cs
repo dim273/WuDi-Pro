@@ -65,6 +65,7 @@ public class Enemy : Entity
     }
     public virtual void FreezeTime(bool _timeFreeze)
     {
+        //直接冻住敌人
         if (_timeFreeze)
         {
             moveSpeed = 0;
@@ -76,12 +77,14 @@ public class Enemy : Entity
             anim.speed = 1;
         }
     }
+    public virtual void FreezeStart(float _duration) => StartCoroutine(FreezeTimeFor(_duration));
     protected virtual IEnumerator FreezeTimeFor(float _time)
     {
         FreezeTime(true);
         yield return new WaitForSeconds(_time);
         FreezeTime(false);
     }
+
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
