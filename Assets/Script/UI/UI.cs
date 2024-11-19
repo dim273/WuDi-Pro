@@ -14,7 +14,7 @@ public class UI : MonoBehaviour
 
         if(_menu != null)
         {
-            _menu.SetActive(false);
+            _menu.SetActive(true);
         }
     }
 }

@@ -27,10 +27,12 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform inventorySlotParent;
     [SerializeField] private Transform stashSlotParent;
     [SerializeField] private Transform equipmentSlotParent;
+    [SerializeField] private Transform statSlotParent;
 
     private UI_ItemSlot[] inventoryItemSlot;
     private UI_ItemSlot[] stashItemSlot;
     private UI_EquipmentSlot[] equipmentSlot;
+    private UI_StatSlot[] statSlot;
 
     [Header("装备冷却")]
     private float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
@@ -56,6 +58,7 @@ public class Inventory : MonoBehaviour
         inventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+        statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
 
         AddStartingItem();
     }
@@ -108,7 +111,7 @@ public class Inventory : MonoBehaviour
             //AddItem(oldEquipment);
             equipment.Remove(va);
             equipmentDictionary.Remove(oldEquipment);
-
+            UpdateSlotUI();
         }
     }
 
@@ -142,6 +145,10 @@ public class Inventory : MonoBehaviour
         for(int i = 0; i < stash.Count; i++)
         {
             stashItemSlot[i].UpdateSlot(stash[i]);
+        }
+        for(int i = 0; i < statSlot.Length; i++)
+        {
+            statSlot[i].UpdateStatValueUI();
         }
     }
 
@@ -276,5 +283,16 @@ public class Inventory : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public bool CanAddItem()
+    {
+        //检测是否可以向背包加入物品
+        if(inventory.Count >= inventoryItemSlot.Length)
+        {
+            Debug.Log("No Space");
+            return false;
+        }
+        return true;
     }
 }

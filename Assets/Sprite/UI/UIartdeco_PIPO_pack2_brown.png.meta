@@ -153,7 +153,7 @@ TextureImporter:
         height: 181
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 29, y: 45, z: 27, w: 46}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -342,7 +342,7 @@ TextureImporter:
         height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 32, y: 28, z: 39, w: 33}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -363,7 +363,7 @@ TextureImporter:
         height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 41, y: 28, z: 46, w: 34}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -378,10 +378,10 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_brown_12
       rect:
         serializedVersion: 2
-        x: 412
-        y: 790
-        width: 121
-        height: 31
+        x: 416
+        y: 796
+        width: 111
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,7 +447,7 @@ TextureImporter:
         height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 29, y: 26, z: 36, w: 23}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -468,7 +468,7 @@ TextureImporter:
         height: 188
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 33, y: 49, z: 27, w: 51}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -651,13 +651,13 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_brown_25
       rect:
         serializedVersion: 2
-        x: 283
-        y: 263
-        width: 182
-        height: 149
+        x: 292
+        y: 268
+        width: 164
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 46, y: 34, z: 50, w: 35}
+      border: {x: 45, y: 34, z: 50, w: 40}
       outline: []
       physicsShape: []
       tessellationDetail: 0

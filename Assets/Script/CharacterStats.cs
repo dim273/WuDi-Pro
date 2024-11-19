@@ -3,6 +3,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum StatType
+{
+    strength,
+    agility,
+    intelligence,
+    vitality,
+    damage,
+    critChance,
+    critPower,
+    armor,
+    magicResistance,
+    fire,
+    ice,
+    lighting
+}
 public class CharacterStats : MonoBehaviour
 {
     private EntityFX fx;
@@ -281,6 +296,27 @@ public class CharacterStats : MonoBehaviour
     protected virtual void Die()
     {
         isDead = true;
+    }
+
+    public Stat GetStats(StatType type)
+    {
+        //找到对应的buff种类
+        switch (type)
+        {
+            case StatType.strength: return strength;
+            case StatType.agility: return agility;
+            case StatType.intelligence: return intellgence;
+            case StatType.vitality: return vitality;
+            case StatType.damage: return damage;
+            case StatType.critChance: return critChance;
+            case StatType.critPower: return critPower;
+            case StatType.armor: return armor;
+            case StatType.magicResistance: return magicResisitance;
+            case StatType.fire: return fireDamage;
+            case StatType.ice: return iceDamage;
+            case StatType.lighting: return lightingDamage;
+        }
+        return null;
     }
 
 }
