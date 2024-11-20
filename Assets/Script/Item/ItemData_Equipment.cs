@@ -42,6 +42,9 @@ public class ItemData_Equipment : ItemData
     public int iceDamage;
     public int lightingDamage;
 
+    [Header("Craft requirements")]
+    public int descriptionLength;
+
     public void AddModifiers()
     {
         PlayerStat playerStats = PlayerManager.instance.player.GetComponent<PlayerStat>();
@@ -90,6 +93,55 @@ public class ItemData_Equipment : ItemData
         foreach(var item in itemEffects)
         {
             item.ExecuteEffect(_enemyPosition);
+        }
+    }
+
+    public override string GetDescription()
+    {
+        sb.Length = 0;
+        descriptionLength = 0;
+
+        AddItemDescription(strength, "strength");
+        AddItemDescription(agility, "agility");
+        AddItemDescription(intellgence, "intelligence");
+        AddItemDescription(vitality, "vitality");
+
+        AddItemDescription(damage, "damage");
+        AddItemDescription(critPower, "critPower");
+        AddItemDescription(critChance, "critChance");
+
+        AddItemDescription(maxHealth, "maxHealth");
+        AddItemDescription(armor, "armor");
+        AddItemDescription(magicResisitance, "magicRes");
+
+        AddItemDescription(fireDamage, "fire");
+        AddItemDescription(iceDamage, "ice");
+        AddItemDescription(lightingDamage, "lighting");
+
+        //使窗口拥有最小尺寸
+        if(descriptionLength < 5)
+        {
+            for(int i = 0; i < 5 - descriptionLength; i++)
+            {
+                sb.AppendLine();
+                sb.Append("");
+            }
+        }
+        
+        return sb.ToString();
+    }
+
+    private void AddItemDescription(int _value, string _name)
+    {
+        if(_value != 0)
+        {
+            Debug.Log(1);
+            if(sb.Length >= 0) 
+                sb.AppendLine();    //控制行数  
+            if (_value > 0)
+                sb.Append(" + " + _value + " " + _name);
+
+            descriptionLength ++; 
         }
     }
 }
