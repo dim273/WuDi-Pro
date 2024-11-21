@@ -16,8 +16,16 @@ public class UI_ItemTooltip : MonoBehaviour
     {
         if (item == null) return;
 
-        itemNameText.text = item.name;
-        itemTypeText.text = item.equipmentType.ToString();
+        itemNameText.text = item.itemName;
+
+        switch (item.equipmentType)
+        {
+            case EquipmentType.Weapon: itemTypeText.text = "武器"; break;
+            case EquipmentType.Armor: itemTypeText.text = "护甲"; break;
+            case EquipmentType.Ring: itemTypeText.text = "指环"; break;
+            case EquipmentType.Amulet: itemTypeText.text = "消耗品"; break;
+        }
+
         itemDescription.text = item.GetDescription();
 
         //设置标题字体大小，美化观感

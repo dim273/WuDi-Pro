@@ -14,7 +14,7 @@ public class ItemData : ScriptableObject
     public string itemName;
     public Sprite icon;
 
-    protected StringBuilder sb;
+    protected StringBuilder sb = new StringBuilder();
 
     public virtual string GetDescription()
     {

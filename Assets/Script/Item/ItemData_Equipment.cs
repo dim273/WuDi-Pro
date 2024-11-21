@@ -101,22 +101,22 @@ public class ItemData_Equipment : ItemData
         sb.Length = 0;
         descriptionLength = 0;
 
-        AddItemDescription(strength, "strength");
-        AddItemDescription(agility, "agility");
-        AddItemDescription(intellgence, "intelligence");
-        AddItemDescription(vitality, "vitality");
+        AddItemDescription(strength, "力量");
+        AddItemDescription(agility, "灵巧");
+        AddItemDescription(intellgence, "智慧");
+        AddItemDescription(vitality, "体力");
 
-        AddItemDescription(damage, "damage");
-        AddItemDescription(critPower, "critPower");
-        AddItemDescription(critChance, "critChance");
+        AddItemDescription(damage, "物理攻击");
+        AddItemDescription(critPower, "暴击率");
+        AddItemDescription(critChance, "暴击伤害");
 
-        AddItemDescription(maxHealth, "maxHealth");
-        AddItemDescription(armor, "armor");
-        AddItemDescription(magicResisitance, "magicRes");
+        AddItemDescription(maxHealth, "生命值");
+        AddItemDescription(armor, "护甲");
+        AddItemDescription(magicResisitance, "魔抗");
 
-        AddItemDescription(fireDamage, "fire");
-        AddItemDescription(iceDamage, "ice");
-        AddItemDescription(lightingDamage, "lighting");
+        AddItemDescription(fireDamage, "火伤");
+        AddItemDescription(iceDamage, "冰伤");
+        AddItemDescription(lightingDamage, "雷伤");
 
         //使窗口拥有最小尺寸
         if(descriptionLength < 5)
@@ -135,7 +135,7 @@ public class ItemData_Equipment : ItemData
     {
         if(_value != 0)
         {
-            Debug.Log(1);
+            //Debug.Log(1);
             if(sb.Length >= 0) 
                 sb.AppendLine();    //控制行数  
             if (_value > 0)

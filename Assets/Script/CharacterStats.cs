@@ -13,10 +13,11 @@ public enum StatType
     critChance,
     critPower,
     armor,
-    magicResistance,
+    magicRes,
     fire,
     ice,
-    lighting
+    lighting,
+    health
 }
 public class CharacterStats : MonoBehaviour
 {
@@ -311,10 +312,11 @@ public class CharacterStats : MonoBehaviour
             case StatType.critChance: return critChance;
             case StatType.critPower: return critPower;
             case StatType.armor: return armor;
-            case StatType.magicResistance: return magicResisitance;
+            case StatType.magicRes: return magicResisitance;
             case StatType.fire: return fireDamage;
             case StatType.ice: return iceDamage;
             case StatType.lighting: return lightingDamage;
+            case StatType.health: return maxHealth; 
         }
         return null;
     }
