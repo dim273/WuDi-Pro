@@ -6,12 +6,34 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject characterUI;
+    [SerializeField] private GameObject skillUI;
+    [SerializeField] private GameObject carftUI;
+    [SerializeField] private GameObject optionUI;
+
     public UI_ItemTooltip itemTooltip;
     public UI_StatTooltip statTooltip;
 
-    public void Start()
+    void Start()
     {
-        itemTooltip = characterUI.GetComponentInChildren<UI_ItemTooltip>();
+        SwitchTo(null);
+        itemTooltip.gameObject.SetActive(false);
+        statTooltip.gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+            SwitchWithKeyTo(characterUI);
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+            SwitchWithKeyTo(skillUI);
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            SwitchWithKeyTo(carftUI);
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            SwitchWithKeyTo(optionUI);
+
     }
 
     public void SwitchTo(GameObject _menu)
@@ -26,5 +48,15 @@ public class UI : MonoBehaviour
         {
             _menu.SetActive(true);
         }
+    }
+
+    public void SwitchWithKeyTo(GameObject _menu)
+    {
+        if(_menu != null && _menu.activeSelf)
+        {
+            _menu.SetActive(false);
+            return;
+        }
+        SwitchTo(_menu);
     }
 }

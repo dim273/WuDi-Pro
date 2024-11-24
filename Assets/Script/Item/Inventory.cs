@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
 
     [Header("装备冷却")]
     private float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
-    private float armorSkillUsedTime;       //上次使用装备冷却的时间
+    private float armorSkillUsedTime;                //上次使用装备冷却的时间
     private void Awake()
     {
         if(instance == null)
@@ -293,6 +293,36 @@ public class Inventory : MonoBehaviour
             Debug.Log("No Space");
             return false;
         }
+        return true;
+    }
+
+    public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiedMaterials)
+    {
+        List<InventoryItem> materialsToRemove = new List<InventoryItem>();
+
+        for(int i = 0; i< _requiedMaterials.Count; i++)
+        {
+            if (stashDictionary.TryGetValue(_requiedMaterials[i].data, out InventoryItem stashValue))
+            {
+                if(stashValue.stackSize < _requiedMaterials[i].stackSize)
+                {
+                    Debug.Log("材料不够");
+                    return false;
+                }
+                else
+                {
+                    materialsToRemove.Add(stashValue);
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        for(int i = 0; i < materialsToRemove.Count; i++)
+            RemoveItem(materialsToRemove[i].data);
+
+        AddItem(_itemToCraft);
         return true;
     }
 }
