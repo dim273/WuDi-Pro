@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CommonSword
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Common Sword
+  itemName: "\u666E\u901A\u5251"
   icon: {fileID: -670118555, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 0
   skillType: 0
@@ -32,3 +32,5 @@ MonoBehaviour:
   fireDamage: 0
   iceDamage: 0
   lightingDamage: 0
+  craftinggMaterials: []
+  descriptionLength: 0

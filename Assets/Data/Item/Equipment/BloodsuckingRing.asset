@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: "\u8840\u94BB"
   icon: {fileID: 932469711, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 2
-  skillType: 1
+  skillType: 0
   itemEffects:
   - {fileID: 11400000, guid: a2d4c5aa76b51b84a9ef843419e585ca, type: 2}
   coolDown: 0
@@ -33,3 +33,5 @@ MonoBehaviour:
   fireDamage: 0
   iceDamage: 0
   lightingDamage: 0
+  craftinggMaterials: []
+  descriptionLength: 0

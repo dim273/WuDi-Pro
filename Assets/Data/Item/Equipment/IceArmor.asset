@@ -33,3 +33,5 @@ MonoBehaviour:
   fireDamage: 0
   iceDamage: 2
   lightingDamage: 0
+  craftinggMaterials: []
+  descriptionLength: 0
