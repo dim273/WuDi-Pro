@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b49398c7ab2147047a48b70aa1fe1a71, type: 3}
-  m_Name: Bone
+  m_Name: Screw
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: "\u9AA8\u5934"
-  icon: {fileID: -476279335, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
+  itemName: "\u87BA\u4E1D"
+  icon: {fileID: -1058479364, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
