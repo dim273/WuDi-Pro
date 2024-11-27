@@ -48,6 +48,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         if (itemImage.sprite == null) return;
         if(item.data.itemType == ItemType.Equipment && item != null && item.data!)
             Inventory.instance.EquipItem(item.data);
+        ui.itemTooltip.HideToolTip();
     }
 
     public void OnPointerExit(PointerEventData eventData)

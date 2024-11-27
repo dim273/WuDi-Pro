@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: "\u96F7\u4E4B\u5203"
   icon: {fileID: -406050819, guid: 85190aacb3dd8614a8cf3efd5ae491b2, type: 3}
   equipmentType: 0
-  skillType: 0
+  skillType: 1
   itemEffects:
   - {fileID: 11400000, guid: c2c185f668452c842be45ad1533aeeab, type: 2}
   coolDown: 5
@@ -36,4 +36,4 @@ MonoBehaviour:
   craftinggMaterials:
   - data: {fileID: 11400000, guid: 3a67e912931ee004a8743956a89827be, type: 2}
     stackSize: 1
-  descriptionLength: 0
+  descriptionLength: 3

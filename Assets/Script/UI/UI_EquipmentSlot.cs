@@ -18,6 +18,7 @@ public class UI_EquipmentSlot : UI_ItemSlot
 
         Inventory.instance.AddItem(item.data as ItemData_Equipment);        //将装备重新放回装备栏
         Inventory.instance.Unequipment(item.data as ItemData_Equipment);    //从装备槽卸下装备
+        ui.itemTooltip.HideToolTip();
         CleanUpSlot();
         
     }
