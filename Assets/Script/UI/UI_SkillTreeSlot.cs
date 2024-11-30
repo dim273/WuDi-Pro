@@ -1,22 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_SkillTreeSlot : MonoBehaviour
+public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public bool unlocked;
+
+    [SerializeField] private string skillName;
+    [TextArea]
+    [SerializeField] private string skillDescription;
+    [SerializeField] private Color lockedColor;
 
     [SerializeField] private UI_SkillTreeSlot[] shouldBeLocked;
     [SerializeField] private UI_SkillTreeSlot[] shouldBeUnlocked;
 
-    [SerializeField] private Image skillImage;
+    private Image skillImage;
+    private UI ui;
+
+    private void OnValidate()
+    {
+        gameObject.name = "Skill - " + skillName;
+    }
 
     private void Start()
     {
+        ui = GetComponentInParent<UI>();
         skillImage = GetComponent<Image>();
-
-        skillImage.color = Color.red;
+        skillImage.color = lockedColor;
 
         GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
     }
@@ -40,7 +52,16 @@ public class UI_SkillTreeSlot : MonoBehaviour
             }
         }
         unlocked = true;
-        skillImage.color = Color.green;
+        skillImage.color = Color.white;
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ui.skillTooltip.ShowSkillToolTip(skillName, skillDescription);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ui.skillTooltip.HideSkillToolTip();
     }
 
 }
