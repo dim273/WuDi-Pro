@@ -8,6 +8,7 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     public bool unlocked;
 
+    [SerializeField] private int skillCost;
     [SerializeField] private string skillName;
     [TextArea]
     [SerializeField] private string skillDescription;
@@ -24,13 +25,16 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         gameObject.name = "Skill - " + skillName;
     }
 
+    private void Awake()
+    {
+        GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
+    }
+
     private void Start()
     {
         ui = GetComponentInParent<UI>();
         skillImage = GetComponent<Image>();
         skillImage.color = lockedColor;
-
-        GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
     }
 
     public void UnlockSkillSlot()
@@ -51,6 +55,10 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 return; 
             }
         }
+
+        if (!PlayerManager.instance.HaveEnoughSoul(skillCost))
+            return;
+
         unlocked = true;
         skillImage.color = Color.white;
     }

@@ -1152,6 +1152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u5C0F\u9E21\u8FFD\u8E2A"
   skillDescription: "\u5C0F\u9E21\u5931\u53BB\u4E92\u6362\u529F\u80FD\uFF0C\u91CA\u653E\u540E\u5C06\u81EA\u52A8\u4FA6\u5BDF\u4E00\u5B9A\u8303\u56F4\u7C7B\u7684\u654C\u4EBA\uFF0C\u98DE\u5411\u5176\u5E76\u7206\u70B8\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -1579,6 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u4F24\u5BB3\u63D0\u5347I"
   skillDescription: "\u589E\u52A020%\u7BEE\u7403\u5168\u90E8\u6280\u80FD\u7684\u4F24\u5BB3\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -3898,6 +3900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u7BEE\u7403\u7838\u51FB"
   skillDescription: "\u7528\u7BEE\u7403\u7838\u5411\u654C\u4EBA\uFF0C\u547D\u4E2D\u53EF\u4EE5\u8BA9\u654C\u4EBA\u505C\u6B62\u884C\u52A8\uFF01\u4E4B\u540E\u4F1A\u81EA\u52A8\u8FD4\u56DE\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -4380,6 +4383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u5F39\u8DF3\u7BEE\u7403"
   skillDescription: "\u7BEE\u7403\u53EF\u4EE5\u5728\u654C\u4EBA\u95F4\u5F39\u8DF3\uFF0C\u6700\u591A4\u6B21\u3002\u4F46\u662F\u5931\u53BB\u4E86\u7838\u6655\u654C\u4EBA\u7684\u529F\u80FD\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -6124,6 +6128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u4F24\u5BB3\u63D0\u5347II"
   skillDescription: "\u589E\u52A050%\u7BEE\u7403\u6280\u80FD\u7684\u4F24\u5BB3\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -6627,6 +6632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u7206\u70B8\u7BEE\u7403"
   skillDescription: "\u7BEE\u7403\u51FB\u4E2D\u654C\u4EBA\u4F1A\u7206\u70B8\uFF0C\u4F46\u662F\u5931\u53BB\u4E86\u7838\u6655\u654C\u4EBA\u7684\u529F\u80FD\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -6767,6 +6773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 714448797}
+  soul: 0
 --- !u!1 &714448796
 GameObject:
   m_ObjectHideFlags: 0
@@ -8139,6 +8146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u7BEE\u7403\u51B2\u51FB"
   skillDescription: "\u7BEE\u7403\u53EF\u4EE5\u51FB\u7A7F\u654C\u4EBA\uFF01\u4F46\u662F\u5931\u53BB\u4E86\u7838\u6655\u654C\u4EBA\u7684\u529F\u80FD\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -9036,6 +9044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 200
   skillName: "\u5764\u609F"
   skillDescription: "\u5F71\u5B50\u5728\u653B\u51FB\u5230\u654C\u4EBA\u65F6\uFF0C\u6709\u673A\u4F1A\u518D\u751F\u6210\u4E00\u4E2A\u5F71\u5B50\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -10369,6 +10378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u5C0F\u9E21\u5764\u95EA"
   skillDescription: "\u91CA\u653E\u7684\u5F71\u5B50\u5168\u90E8\u53D8\u6210\u5C0F\u9E21\u3002\u5FC5\u987B\u89E3\u9501\u5168\u90E8\u5C0F\u9E21\u7C7B\u6280\u80FD\u624D\u53EF\u89E3\u9501\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -10765,6 +10775,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 1
+  cloneDashUnlocked: 0
+  cloneDashButton: {fileID: 1925094200}
+  duplicateClone: 0
+  duplicateCloneButton: {fileID: 898401332}
 --- !u!114 &1069986326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10781,10 +10795,9 @@ MonoBehaviour:
   clonePrefah: {fileID: 3252935188929291861, guid: b272dae18799bae4fa48356bba7bfe95, type: 3}
   cloneDuration: 3
   canAttack: 1
-  canCreateCloneOnStart: 0
   chooseChickenInsteadClone: 0
   canDuplicateClone: 0
-  chanceToDuplicate: 20
+  chanceToDuplicate: 50
 --- !u!114 &1069986327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15018,6 +15031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u5C0F\u9E21\u51FA\u51FB"
   skillDescription: "\u6309V\u5728\u539F\u5730\u91CA\u653E\u4E00\u53EA\u5C0F\u9E21\uFF0C\u5C0F\u9E21\u5B58\u5728\u671F\u95F4\uFF0C\u518D\u6B21\u6309V\u4F1A\u4E0E\u5C0F\u9E21\u4E92\u6362\u4F4D\u7F6E\uFF0C\u7136\u540E\u5C0F\u9E21\u6D88\u5931\uFF0C\u4E00\u6BB5\u65F6\u95F4\u540E\u5C0F\u9E21\u4E5F\u4F1A\u81EA\u52A8\u6D88\u5931\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -16072,6 +16086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u5C0F\u9E21\u7206\u70B8"
   skillDescription: "\u5C0F\u9E21\u5C06\u5728\u6D88\u5931\u65F6\u7206\u70B8\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -18392,6 +18407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u7EC3\u4E60\u751F\u821E\u53F0"
   skillDescription: "\u6309M\u9886\u57DF\u5C55\u5F00\uFF0C\u7EC3\u4E60\u751F\u821E\u53F0\uFF0C\u89E6\u78B0\u5230\u9886\u57DF\u7684\u654C\u4EBA\uFF0C\u4F1A\u9759\u6B62\uFF0C\u540C\u65F6\u6309CTRL\u952E\u53EF\u589E\u52A0\u5A01\u529B\uFF0C\u6309M\u6216\u65F6\u95F4\u5230\u540E\uFF0C\u4F1A\u5BF9\u9886\u57DF\u5185\u654C\u4EBA\u53D1\u52A8\u653B\u51FB\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -30137,6 +30153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u901F\u5EA6I"
   skillDescription: "\u589E\u52A0\u653B\u51FB\u901F\u5EA6"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -30276,6 +30293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 0
   skillName: "\u901F\u5EA6II"
   skillDescription: "\u589E\u52A0\u79FB\u52A8\u901F\u5EA6"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
@@ -30626,6 +30644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlocked: 0
+  skillCost: 100
   skillName: "\u5764\u95EA"
   skillDescription: "\u51B2\u523A\u540E\u5728\u539F\u5730\u7559\u4E0B\u6301\u7EED\u4E00\u5C0F\u6BB5\u65F6\u95F4\u7684\u5F71\u5B50\uFF0C\u5F71\u5B50\u4F1A\u653B\u51FB\u9644\u8FD1\u7684\u654C\u4EBA"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}

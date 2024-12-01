@@ -18,9 +18,13 @@ public enum SkillType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
+
+    [Header("武器效果")]
     public SkillType skillType;         //武器技能类型
     public ItemEffect[] itemEffects;     //效果列表
     public float coolDown;          //该武器特殊效果的冷却时间
+    [TextArea]
+    public string itemEffectDescription;    //技能描述
 
     [Header("Major stats")]
     public int strength;      //力量，每一点可以提供1点物理伤害
@@ -130,6 +134,12 @@ public class ItemData_Equipment : ItemData
             }
         }
         
+        if(itemEffectDescription.Length > 0)
+        {
+            sb.AppendLine();
+            sb.Append(itemEffectDescription);
+        }
+
         return sb.ToString();
     }
 
