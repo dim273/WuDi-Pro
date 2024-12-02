@@ -10775,9 +10775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 1
-  cloneDashUnlocked: 0
   cloneDashButton: {fileID: 1925094200}
-  duplicateClone: 0
   duplicateCloneButton: {fileID: 898401332}
 --- !u!114 &1069986326
 MonoBehaviour:
@@ -10862,7 +10860,10 @@ MonoBehaviour:
   coolDown: 5
   chickenDuration: 4
   chickenPrefab: {fileID: 5111555895748160606, guid: 15aa167064d7daf4199a657a0797a110, type: 3}
-  canExplode: 1
+  createChickenButton: {fileID: 1371690098}
+  canExplode: 0
+  explodeButton: {fileID: 1461916299}
+  canMoveButton: {fileID: 115321718}
   moveSpeed: 4
   canMove: 0
   canMulti: 0

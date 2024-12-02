@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChickenSkill : Skill
 {
@@ -9,10 +10,16 @@ public class ChickenSkill : Skill
     private GameObject chickenGameobject;
     private float defaultCoolDown;
 
-    [Header("Explode Chicken")]
-    [SerializeField] private bool canExplode;
+    [Header("Ð¡¼¦")]
+    [SerializeField] private UI_SkillTreeSlot createChickenButton;
+    public bool chickenSkillUnlocked {  get; private set; }
 
-    [Header("Move Info")]
+    [Header("Ð¡¼¦±¬Õ¨")]
+    [SerializeField] private bool canExplode;
+    [SerializeField] private UI_SkillTreeSlot explodeButton;
+
+    [Header("Ð¡¼¦×·×Ù")]
+    [SerializeField] private UI_SkillTreeSlot canMoveButton;
     [SerializeField] private float moveSpeed;
     [SerializeField] private bool canMove;
 
@@ -44,6 +51,7 @@ public class ChickenSkill : Skill
             chickenGameobject.GetComponent<ChickenManager>().FinishChicken();
         }
     }
+
     private bool CanUseMultiChicken()
     {
         if (canMulti)
@@ -70,6 +78,7 @@ public class ChickenSkill : Skill
         }
         return false;
     }
+
     public void CurrentChickenChooseRandomTarget() => chickenGameobject.GetComponent<ChickenManager>().ChooseRandomEnemy();
     private void RefilChicken()
     {
@@ -79,6 +88,7 @@ public class ChickenSkill : Skill
             chickenLeft.Add(chickenPrefab);
         }
     }
+
     private void ResetAbility()
     {
         if (coolDownTimer > 0)
@@ -86,15 +96,41 @@ public class ChickenSkill : Skill
         coolDown = multiCoolDown;
         RefilChicken();
     }
+
     public void CreateChicken()
     {
         chickenGameobject = Instantiate(chickenPrefab, player.transform.position, Quaternion.identity);
         ChickenManager newChickenManager = chickenGameobject.GetComponent<ChickenManager>();
         newChickenManager.SetupChicken(chickenDuration, canExplode, canMove, moveSpeed, FindClonestEnemy(chickenGameobject.transform), player);
     }
+
     protected override void Start()
     {
         base.Start();
         defaultCoolDown = coolDown;
+
+        createChickenButton.GetComponent<Button>().onClick.AddListener(UnlockChicken);
+        explodeButton.GetComponent<Button>().onClick.AddListener(UnlockChickenExplode);
+        canMoveButton.GetComponent<Button>().onClick.AddListener(UnlockChickenMove);
     }
+
+    #region unlockSkill
+    private void UnlockChicken()
+    {
+        if (createChickenButton.unlocked)
+            chickenSkillUnlocked = true;
+    }
+
+    private void UnlockChickenExplode()
+    {
+        if(explodeButton.unlocked)
+            canExplode = true;
+    }
+
+    private void UnlockChickenMove()
+    {
+        if (canMoveButton.unlocked)
+            canMove = true;
+    }
+    #endregion
 }

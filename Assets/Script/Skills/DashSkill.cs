@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class DashSkill : Skill
 {
     [Header("¿§…¡")]
-    public bool cloneDashUnlocked;
     [SerializeField] private UI_SkillTreeSlot cloneDashButton;
+    public bool cloneDashUnlocked {  get; private set; }
 
     [Header("¿§ŒÚ")]
-    public bool duplicateClone;
     [SerializeField] private UI_SkillTreeSlot duplicateCloneButton;
+    public bool duplicateClone { get; private set; }
+    
 
     public override void UseSkill()
     {

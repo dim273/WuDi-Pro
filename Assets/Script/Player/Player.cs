@@ -83,7 +83,7 @@ public class Player : Entity
 
     private void CreateChicken()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) && skill.chicken.chickenSkillUnlocked)
             skill.chicken.CanUseSkill();
     }
 
