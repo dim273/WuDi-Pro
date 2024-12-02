@@ -8,6 +8,7 @@ public class SwordManager : MonoBehaviour
     private float returnSpeed;
     private bool isReturn;
     private float ensureTime = 2f;
+    private int addDamage;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -16,7 +17,6 @@ public class SwordManager : MonoBehaviour
 
     //private bool canRotate = true;
 
-    //
     [Header("Bounce Info")]
     private float bounceSpeed;
     private bool isBouncing;
@@ -99,13 +99,14 @@ public class SwordManager : MonoBehaviour
 
         isReturn = true;
     }
-    public void SetupSword(Vector2 _dir, float _gravityScale, Player _player, float _freezeTime, float _returnSpeed)
+    public void SetupSword(Vector2 _dir, float _gravityScale, Player _player, float _freezeTime, float _returnSpeed, int _addDamage)
     {
         player = _player;
         rb.velocity = _dir;
         rb.gravityScale = _gravityScale;
         freezeTimeDuration = _freezeTime;
         returnSpeed = _returnSpeed;
+        addDamage = _addDamage;
     }
     public void SetupBounce(bool _isBouncing, int _amountOfBounce, float _bounceSpeed)
     {
@@ -130,7 +131,7 @@ public class SwordManager : MonoBehaviour
         if (collision.GetComponent<Enemy>() != null)
         {
             Enemy enemy = collision.GetComponent<Enemy>();
-            player.stats.DoDamage(collision.GetComponent<EnemyStat>(), 0);
+            player.stats.DoDamage(collision.GetComponent<EnemyStat>(), addDamage);
             if (!isBouncing && pierceAmount <= 0 && !isExplode)
             {
                 enemy.FreezeStart(freezeTimeDuration);

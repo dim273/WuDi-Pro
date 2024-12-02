@@ -23,7 +23,7 @@ public class PlayerGroundState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword())
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && player.skill.sword.unlockBallSkill)
             stateMachine.ChangeState(player.aimSword);
 
         if(Input.GetKeyDown(KeyCode.Q))

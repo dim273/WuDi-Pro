@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Player : Entity
 {
@@ -24,6 +25,10 @@ public class Player : Entity
     [Header("Attack Detail")]
     public Vector2[] attackMovement;
     public float counterAttackDuration;
+
+    [Header("技能影响")]
+    [SerializeField] private UI_SkillTreeSlot moveSpeedButton;
+    [SerializeField] private UI_SkillTreeSlot attackSpeedButton;
 
     public bool inBusy { get; private set; }
     public SkillManager skill { get; private set; }
@@ -71,6 +76,9 @@ public class Player : Entity
 
         defaultJumpForce = jumpForce;
         defaultMoveSpeed = moveSpeed;
+
+        moveSpeedButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UnlockMoveSpeed);
+        attackSpeedButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UnlockAttackSpeed);
     }
     protected override void Update()
     {
@@ -149,5 +157,19 @@ public class Player : Entity
             if (amulet == null) return;
             amulet.ExcuteItemEffect(transform);
         }
+    }
+
+    private void UnlockMoveSpeed()
+    {
+        //改变其速度的技能效果
+        if (moveSpeedButton.unlocked)
+            moveSpeed = moveSpeed * 1.2f;
+    }
+
+    private void UnlockAttackSpeed()
+    {
+        //改变其攻击速度的技能效果
+        if (attackSpeedButton.unlocked)
+            anim.GetComponent<PlayerAnimationControll>().attackSpeed = 2f;
     }
 }

@@ -58,7 +58,7 @@ public class ChickenManager : MonoBehaviour
             if (hit.GetComponent<EnemyStat>() != null)
             {
                 EnemyStat enemyStat = hit.GetComponent<EnemyStat>();
-                player.stats.DoMagicaDamage(enemyStat, 0);
+                player.stats.DoMagicaDamage(enemyStat, 5);
             }
         }
     }

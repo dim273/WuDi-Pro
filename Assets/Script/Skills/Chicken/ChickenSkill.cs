@@ -130,7 +130,10 @@ public class ChickenSkill : Skill
     private void UnlockChickenMove()
     {
         if (canMoveButton.unlocked)
+        {
             canMove = true;
+            canMulti = true;
+        }
     }
     #endregion
 }

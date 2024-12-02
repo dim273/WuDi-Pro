@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SwordType
 {
@@ -13,25 +14,32 @@ public enum SwordType
 public class SwordSkill : Skill
 {
     public SwordType swordType = SwordType.Regular;
+
+
     [Header("Explode Info")]
+    [SerializeField] private UI_SkillTreeSlot ballExplodeButton;
     [SerializeField] private int explodeGravity;
     [SerializeField] private int explodeRange;
 
     [Header("Bounce Info")]
+    [SerializeField] private UI_SkillTreeSlot ballBounceButton;
     [SerializeField] private int amountOfBounce;
     [SerializeField] private float bounceGravity;
     [SerializeField] private float bounceSpeed;
 
     [Header("Pierce Info")]
+    [SerializeField] private UI_SkillTreeSlot ballPierceButton;
     [SerializeField] private int amountOfFierce;
     [SerializeField] private float pierceGravity;
 
     [Header("Sword Info")]
+    [SerializeField] private UI_SkillTreeSlot ballButton;
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchDir;
     [SerializeField] private float swordGravity;
     [SerializeField] private float freezeDuration;
     [SerializeField] private float returnSpeed;
+    public bool unlockBallSkill { get; private set; }
 
     private Vector2 finalDir;
 
@@ -41,11 +49,23 @@ public class SwordSkill : Skill
     [SerializeField] private Transform dotParent;
     [SerializeField] private GameObject dotPrefab;
 
+    [Header("…À∫¶º”≥…")]
+    [SerializeField] private UI_SkillTreeSlot damageAddOneButton;
+    [SerializeField] private UI_SkillTreeSlot damageAddTwoButton;
+    private int additionalDamage;
+
     private GameObject[] dots;
     protected override void Start()
     {
         base.Start();
         GenereateDots();
+
+        ballButton.GetComponent<Button>().onClick.AddListener(UnlockBallSkill);
+        ballExplodeButton.GetComponent<Button>().onClick.AddListener(UnlockBallExplode);
+        ballPierceButton.GetComponent<Button>().onClick.AddListener(UnlockBallPierce);
+        ballBounceButton.GetComponent<Button>().onClick.AddListener(UnlockBallBounce);
+        damageAddOneButton.GetComponent<Button>().onClick.AddListener(UnlockDamageAddOne);
+        damageAddTwoButton.GetComponent<Button>().onClick.AddListener(UnlockDamageAddTwo);
     }
 
     protected override void Update()
@@ -64,6 +84,7 @@ public class SwordSkill : Skill
             }
         }
     }
+
     private void SetUpGravity()
     {
         if(swordType == SwordType.Bounce)
@@ -73,6 +94,7 @@ public class SwordSkill : Skill
         else if(swordType ==  SwordType.Explode)
             swordGravity = explodeGravity;
     }
+
     public void CreateSword()
     {
         Vector2 position = new Vector2(player.transform.position.x, player.transform.position.y + 0.8f); 
@@ -91,10 +113,11 @@ public class SwordSkill : Skill
         {
             newSwordManager.SetupExplode(true, explodeRange);
         }
-        newSwordManager.SetupSword(finalDir, swordGravity, player, freezeDuration, returnSpeed);
+        newSwordManager.SetupSword(finalDir, swordGravity, player, freezeDuration, returnSpeed, additionalDamage);
         player.AssignNewSword(newSword);
         DotsActive(false);
     }
+
     #region Aim
     public Vector2 AimDirection()
     {
@@ -125,6 +148,42 @@ public class SwordSkill : Skill
             AimDirection().normalized.x * launchDir.x,
             AimDirection().normalized.y * launchDir.y) * t + .5f * (Physics2D.gravity * swordGravity) * (t * t);
         return position;    
+    }
+    #endregion
+
+    #region unlockSkill
+    private void UnlockBallSkill()
+    {
+        if (ballButton.unlocked)
+            unlockBallSkill = true;
+    }
+
+    private void UnlockBallExplode()
+    {
+        if(ballExplodeButton.unlocked)
+            swordType = SwordType.Explode;
+    }
+
+    private void UnlockBallPierce()
+    {
+        if(ballPierceButton.unlocked)
+            swordType = SwordType.Pierce;
+    }
+
+    private void UnlockBallBounce()
+    {
+        if(ballBounceButton.unlocked)
+            swordType = SwordType.Bounce;
+    }
+    private void UnlockDamageAddOne()
+    {
+        if (damageAddOneButton.unlocked)
+            additionalDamage += 10;
+    }
+    private void UnlockDamageAddTwo()
+    {
+        if (damageAddTwoButton.unlocked)
+            additionalDamage += 30;
     }
     #endregion
 }
