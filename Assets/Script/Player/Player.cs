@@ -29,6 +29,7 @@ public class Player : Entity
     [Header("技能影响")]
     [SerializeField] private UI_SkillTreeSlot moveSpeedButton;
     [SerializeField] private UI_SkillTreeSlot attackSpeedButton;
+    public bool unlockAttackSpeedAdd {  get; private set; }
 
     public bool inBusy { get; private set; }
     public SkillManager skill { get; private set; }
@@ -170,6 +171,6 @@ public class Player : Entity
     {
         //改变其攻击速度的技能效果
         if (attackSpeedButton.unlocked)
-            anim.GetComponent<PlayerAnimationControll>().attackSpeed = 2f;
+            unlockAttackSpeedAdd = true;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloneSkill : Skill
 {
@@ -13,11 +14,19 @@ public class CloneSkill : Skill
     //[SerializeField] private bool canCreateCloneOnStart;
 
     [Header("Chicken Instead Clone")]
+    [SerializeField] private UI_SkillTreeSlot insteadButton;
     public bool chooseChickenInsteadClone;
 
     [Header("Clone can duplicate")]
     [SerializeField] private bool canDuplicateClone;
     [SerializeField] private float chanceToDuplicate;
+
+    protected override void Start()
+    {
+        base.Start();
+        insteadButton.GetComponent<Button>().onClick.AddListener(UnlockChickenInsteadClone);
+    }
+
     public void CanDuplicateClone(bool _can)
     {
         canDuplicateClone = _can;
@@ -33,5 +42,11 @@ public class CloneSkill : Skill
         GameObject newClone = Instantiate(clonePrefah);
         newClone.GetComponent<CloneManager>().SetupClone(_cloneTransform, cloneDuration, canAttack, _offset, 
             FindClonestEnemy(newClone.transform), canDuplicateClone, chanceToDuplicate, player);
+    }
+
+    private void UnlockChickenInsteadClone()
+    {
+        if (insteadButton.unlocked)
+            chooseChickenInsteadClone = true;
     }
 }

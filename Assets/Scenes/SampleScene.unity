@@ -1154,7 +1154,7 @@ MonoBehaviour:
   unlocked: 0
   skillCost: 0
   skillName: "\u5C0F\u9E21\u8FFD\u8E2A"
-  skillDescription: "\u5C0F\u9E21\u5931\u53BB\u4E92\u6362\u529F\u80FD\uFF0C\u91CA\u653E\u540E\u5C06\u81EA\u52A8\u4FA6\u5BDF\u4E00\u5B9A\u8303\u56F4\u7C7B\u7684\u654C\u4EBA\uFF0C\u98DE\u5411\u5176\u5E76\u7206\u70B8\u3002"
+  skillDescription: "\u5C0F\u9E21\u5931\u53BB\u4E92\u6362\u529F\u80FD\uFF0C\u91CA\u653E\u540E\u5C06\u81EA\u52A8\u4FA6\u5BDF\u4E00\u5B9A\u8303\u56F4\u7C7B\u7684\u654C\u4EBA\uFF0C\u98DE\u5411\u5176\u5E76\u7206\u70B8\u3002\u5E76\u4E14\u53EF\u4EE5\u50A8\u5B58\u591A\u4E2A\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
   shouldBeLocked: []
   shouldBeUnlocked:
@@ -1585,7 +1585,8 @@ MonoBehaviour:
   skillDescription: "\u589E\u52A020%\u7BEE\u7403\u5168\u90E8\u6280\u80FD\u7684\u4F24\u5BB3\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
   shouldBeLocked: []
-  shouldBeUnlocked: []
+  shouldBeUnlocked:
+  - {fileID: 377510108}
 --- !u!114 &141049010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3608,7 +3609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4158e4f5ac42f5b4098e6027db29c0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
 --- !u!114 &371029868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6038,7 +6038,8 @@ MonoBehaviour:
   skillDescription: "\u589E\u52A050%\u7BEE\u7403\u6280\u80FD\u7684\u4F24\u5BB3\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
   shouldBeLocked: []
-  shouldBeUnlocked: []
+  shouldBeUnlocked:
+  - {fileID: 141049009}
 --- !u!114 &602940991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6678,7 +6679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 714448797}
-  soul: 0
+  soul: 10000
 --- !u!1 &714448796
 GameObject:
   m_ObjectHideFlags: 0
@@ -6733,8 +6734,8 @@ MonoBehaviour:
   - {x: 4, y: 0}
   - {x: 1, y: 2}
   counterAttackDuration: 0.2
-  moveSpeedButton: {fileID: 1880699434}
-  attackSpeedButton: {fileID: 1897771941}
+  moveSpeedButton: {fileID: 1897771941}
+  attackSpeedButton: {fileID: 1880699434}
   sword: {fileID: 0}
 --- !u!4 &714448798
 Transform:
@@ -8021,10 +8022,11 @@ MonoBehaviour:
   skillName: "\u7BEE\u7403\u51B2\u51FB"
   skillDescription: "\u7BEE\u7403\u53EF\u4EE5\u51FB\u7A7F\u654C\u4EBA\uFF01\u4F46\u662F\u5931\u53BB\u4E86\u7838\u6655\u654C\u4EBA\u7684\u529F\u80FD\u3002"
   lockedColor: {r: 0.35220122, g: 0.34887853, b: 0.34887853, a: 0.54901963}
-  shouldBeLocked: []
-  shouldBeUnlocked:
+  shouldBeLocked:
   - {fileID: 430038538}
   - {fileID: 690511167}
+  shouldBeUnlocked:
+  - {fileID: 377510108}
 --- !u!114 &871393579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10664,6 +10666,7 @@ MonoBehaviour:
   clonePrefah: {fileID: 3252935188929291861, guid: b272dae18799bae4fa48356bba7bfe95, type: 3}
   cloneDuration: 3
   canAttack: 1
+  insteadButton: {fileID: 1056980007}
   chooseChickenInsteadClone: 0
   canDuplicateClone: 0
   chanceToDuplicate: 50
@@ -10716,6 +10719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 0
+  canUseBlackHoleSkillButton: {fileID: 1723562830}
   blackHolePrefab: {fileID: 77739513864537488, guid: 2ecdcb001187a9d4cb0ab1716c484a1c, type: 3}
   maxSize: 8
   growSpeed: 3

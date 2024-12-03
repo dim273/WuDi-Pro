@@ -8,9 +8,6 @@ public class PlayerAnimationControll : MonoBehaviour
     private Player player => GetComponentInParent<Player>();
     private Animator anim => GetComponent<Animator>();
 
-
-    public float attackSpeed = 1f;
-
     private void Update()
     {
        
@@ -39,10 +36,5 @@ public class PlayerAnimationControll : MonoBehaviour
     private void ThrowSword()
     {
         SkillManager.instance.sword.CreateSword();
-    }
-
-    private void ChangeAttackSpeed()
-    {
-        anim.speed = attackSpeed;
     }
 }

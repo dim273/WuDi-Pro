@@ -64,7 +64,12 @@ public class CloneManager : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
-                player.stats.DoDamage(hit.GetComponent<EnemyStat>(), 0);
+                if(player == null)
+                {
+                    Debug.Log("cwcwc");
+                    return;
+                }
+                player.stats.DoDamage(hit.GetComponent<EnemyStat>(), -1);
                 if (canDuplicateClone)
                 {
                     if(Random.Range(0, 100) < chanceToDuplicate)

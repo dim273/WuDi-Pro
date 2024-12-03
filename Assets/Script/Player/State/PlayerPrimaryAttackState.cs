@@ -14,6 +14,9 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        if (player.unlockAttackSpeedAdd)
+            player.anim.speed = 2f;
+
         stateTimer = .2f;
         xInput = 0;
         if(comboCounter > 2 || Time.time >= lastTimeAttack + comboWindow) 
@@ -31,6 +34,7 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Exit();
         comboCounter++;
         lastTimeAttack = Time.time;
+        player.anim.speed = 1f;
     }
 
     public override void Update()
