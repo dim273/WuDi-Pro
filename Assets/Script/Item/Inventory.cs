@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
     private UI_StatSlot[] statSlot;
 
     [Header("装备冷却")]
-    private float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
+    public float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
     private float armorSkillUsedTime;                //上次使用装备冷却的时间
     private void Awake()
     {

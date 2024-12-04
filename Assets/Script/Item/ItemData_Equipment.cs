@@ -21,8 +21,8 @@ public class ItemData_Equipment : ItemData
 
     [Header("武器效果")]
     public SkillType skillType;         //武器技能类型
-    public ItemEffect[] itemEffects;     //效果列表
-    public float coolDown;          //该武器特殊效果的冷却时间
+    public ItemEffect[] itemEffects;    //效果列表
+    public float coolDown;              //该武器特殊效果的冷却时间
     [TextArea]
     public string itemEffectDescription;    //技能描述
 

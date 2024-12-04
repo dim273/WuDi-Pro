@@ -153,7 +153,7 @@ public class Player : Entity
     {
         if (!stats.isDead && Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("1");
+            //Debug.Log("1");
             ItemData_Equipment amulet = Inventory.instance.GetEquipment(EquipmentType.Amulet);
             if (amulet == null) return;
             amulet.ExcuteItemEffect(transform);
