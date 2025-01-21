@@ -64,7 +64,7 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ui.skillTooltip.ShowSkillToolTip(skillName, skillDescription);
+        ui.skillTooltip.ShowSkillToolTip(skillName, skillDescription,skillCost.ToString());
     }
 
     public void OnPointerExit(PointerEventData eventData)

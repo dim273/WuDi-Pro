@@ -124,6 +124,17 @@ public class ItemData_Equipment : ItemData
         AddItemDescription(iceDamage, "冰伤");
         AddItemDescription(lightingDamage, "雷伤");
 
+        for(int i = 0; i < itemEffects.Length;i ++)
+        {
+            if (itemEffects[i].effectDescription.Length > 0)
+            {
+                sb.AppendLine();
+                sb.AppendLine("特技：" + itemEffects[i].effectDescription);
+                descriptionLength++;
+            }
+        }
+
+
         //使窗口拥有最小尺寸
         if(descriptionLength < 5)
         {
@@ -132,12 +143,6 @@ public class ItemData_Equipment : ItemData
                 sb.AppendLine();
                 sb.Append("");
             }
-        }
-        
-        if(itemEffectDescription.Length > 0)
-        {
-            sb.AppendLine();
-            sb.Append(itemEffectDescription);
         }
 
         return sb.ToString();

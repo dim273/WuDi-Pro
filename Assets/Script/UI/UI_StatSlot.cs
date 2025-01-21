@@ -84,4 +84,5 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         ui.statTooltip.HideStatToolTip();
     }
+
 }
