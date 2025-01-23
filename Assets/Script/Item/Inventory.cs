@@ -4,8 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
 
-public class Inventory : MonoBehaviour
+
+public class Inventory : MonoBehaviour, ISaveManager
 {
     //单例模式
     public static Inventory instance;
@@ -37,6 +39,9 @@ public class Inventory : MonoBehaviour
     [Header("装备冷却")]
     public float[] equipmentSkillTimer = { 0, 0, 0, 0 };   //武器技能冷却
     private float armorSkillUsedTime;                //上次使用装备冷却的时间
+
+    [Header("数据库")]
+    public List<InventoryItem> loadedItems;
     private void Awake()
     {
         if(instance == null)
@@ -73,6 +78,19 @@ public class Inventory : MonoBehaviour
 
     private void AddStartingItem()
     {
+        if(loadedItems.Count > 0)   //载入文件存在时调用
+        {
+            foreach(InventoryItem item in loadedItems)
+            {
+                Debug.Log("wew");
+                for (int i = 0; i < item.stackSize; i++)
+                {
+                    AddItem(item.data);
+                }
+            }
+            return;
+        }
+        Debug.Log("dwd");
         for(int i = 0; i < startingItem.Count; i++)
         {
             if(startingItem[i] != null)
@@ -325,5 +343,44 @@ public class Inventory : MonoBehaviour
 
         AddItem(_itemToCraft);
         return true;
+    }
+
+    public void LoadData(GameData _data)
+    {
+        foreach(KeyValuePair<string, int> pair in _data.inventory)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemID == pair.Key)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = pair.Value;
+                    loadedItems.Add(itemToLoad);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.inventory.Clear();
+
+        foreach(KeyValuePair<ItemData,InventoryItem> pair in inventoryDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
+        }
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDataBase = new List<ItemData>();
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Item/Equipment" });
+        foreach(string SOName in assetNames)
+        {
+            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
+            itemDataBase.Add(itemData);
+        }
+        return itemDataBase;
     }
 }

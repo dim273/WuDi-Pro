@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, ISaveManager
 {
     public static PlayerManager instance;  
     public Player player;
@@ -29,5 +29,15 @@ public class PlayerManager : MonoBehaviour
         else 
             soul -= _cost;
         return true;
+    }
+
+    public void LoadData(GameData _data)
+    {
+        soul = _data.soul;
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.soul = this.soul;
     }
 }
