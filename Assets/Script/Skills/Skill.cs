@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,14 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         player = PlayerManager.instance.player;
+        CheckUnlock();
     }
+
+    protected virtual void CheckUnlock()
+    {
+        
+    }
+
     protected virtual void Update()
     {
         coolDownTimer -= Time.deltaTime;

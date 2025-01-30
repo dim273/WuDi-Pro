@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
+using System;
 
 public class Player : Entity
 {
@@ -71,6 +72,7 @@ public class Player : Entity
     }
     protected override void Start()
     {
+        CheckUnlockSkill();
         base.Start();
         stateMachine.Initialize(idleState);
         skill = SkillManager.instance;
@@ -81,6 +83,13 @@ public class Player : Entity
         moveSpeedButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UnlockMoveSpeed);
         attackSpeedButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UnlockAttackSpeed);
     }
+
+    private void CheckUnlockSkill()
+    {
+        UnlockAttackSpeed();
+        UnlockMoveSpeed();
+    }
+
     protected override void Update()
     {
         base.Update();

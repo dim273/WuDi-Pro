@@ -114,6 +114,14 @@ public class ChickenSkill : Skill
         canMoveButton.GetComponent<Button>().onClick.AddListener(UnlockChickenMove);
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockChicken();
+        UnlockChickenExplode();
+        UnlockChickenMove();
+    }
+
+
     #region unlockSkill
     private void UnlockChicken()
     {

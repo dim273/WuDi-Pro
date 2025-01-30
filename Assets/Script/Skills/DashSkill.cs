@@ -26,6 +26,12 @@ public class DashSkill : Skill
         duplicateCloneButton.GetComponent<Button>().onClick.AddListener(UnlockDeplicateClone);
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockClone();
+        UnlockDeplicateClone();
+    }
+
     private void UnlockClone()
     {
         if (cloneDashButton.unlocked)

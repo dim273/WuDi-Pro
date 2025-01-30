@@ -85,6 +85,16 @@ public class SwordSkill : Skill
         }
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockBallSkill();
+        UnlockBallBounce();
+        UnlockBallExplode();
+        UnlockBallPierce();
+        UnlockDamageAddOne();
+        UnlockDamageAddTwo();
+    }
+
     private void SetUpGravity()
     {
         if(swordType == SwordType.Bounce)

@@ -26,6 +26,14 @@ public class SaveManager : MonoBehaviour
         
     }
 
+    [ContextMenu("É¾³ýÎÄ¼þ")]
+    private void DeleteSaveData()
+    {
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        dataHandler.DeleteData();
+    }
+
+
     public void NewGame()
     {
         gameData = new GameData();

@@ -42,6 +42,8 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     [Header("数据库")]
     public List<InventoryItem> loadedItems;
+    public List<ItemData_Equipment> loadedEquipment;
+
     private void Awake()
     {
         if(instance == null)
@@ -78,6 +80,11 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     private void AddStartingItem()
     {
+        foreach(ItemData_Equipment item in loadedEquipment)
+        {
+            EquipItem(item);
+        }
+
         if(loadedItems.Count > 0)   //载入文件存在时调用
         {
             foreach(InventoryItem item in loadedItems)
@@ -359,6 +366,16 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
         }
+        foreach(string equipmentID in _data.equipmentID)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemID == equipmentID)
+                {
+                    loadedEquipment.Add(item as ItemData_Equipment);
+                }
+            }
+        }
     }
 
     public void SaveData(ref GameData _data)
@@ -369,12 +386,22 @@ public class Inventory : MonoBehaviour, ISaveManager
         {
             _data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
         }
+
+        foreach(KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
+        }
+
+        foreach(KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
+        {
+            _data.equipmentID.Add(pair.Key.itemID);
+        }
     }
 
     private List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDataBase = new List<ItemData>();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Item/Equipment" });
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Item" });
         foreach(string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);

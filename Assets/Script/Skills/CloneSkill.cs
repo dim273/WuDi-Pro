@@ -27,6 +27,11 @@ public class CloneSkill : Skill
         insteadButton.GetComponent<Button>().onClick.AddListener(UnlockChickenInsteadClone);
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockChickenInsteadClone();
+    }
+
     public void CanDuplicateClone(bool _can)
     {
         canDuplicateClone = _can;
