@@ -27,7 +27,7 @@ public class SaveManager : MonoBehaviour
     }
 
     [ContextMenu("É¾³ýÎÄ¼þ")]
-    private void DeleteSaveData()
+    public void DeleteSaveData()
     {
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         dataHandler.DeleteData();
@@ -71,5 +71,12 @@ public class SaveManager : MonoBehaviour
     {
         IEnumerable<ISaveManager> saveManager = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
         return new List<ISaveManager>(saveManager);
+    }
+
+    public bool HasSaveGame()
+    {
+        if(dataHandler.Load() == null)
+            return false;
+        return true;
     }
 }
