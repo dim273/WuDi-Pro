@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+    [Header("结束黑屏")]
+    [SerializeField] private UI_Fade fadeScreen;
+    [SerializeField] private GameObject endText;
+    [Space]
+
+
     [SerializeField] private GameObject characterUI;
     [SerializeField] private GameObject skillUI;
     [SerializeField] private GameObject carftUI;
@@ -49,7 +55,10 @@ public class UI : MonoBehaviour
         //菜单间进行切换
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            //检查UI界面是否含有fadeScreen
+            bool fadeScreen = transform.GetChild(i).GetComponent<UI_Fade>() != null;
+            if(!fadeScreen)
+                transform.GetChild(i).gameObject.SetActive(false);
         }
 
         if(_menu != null)
@@ -76,5 +85,19 @@ public class UI : MonoBehaviour
                 return;
         }
         SwitchTo(inGameUI);
+    }
+
+    public void SwitchOnEndScreen()
+    {
+        Debug.Log("死亡");
+        SwitchTo(null);
+        fadeScreen.FadeOut();
+        StartCoroutine(EndTextShow());
+    }
+
+    IEnumerator EndTextShow()
+    {
+        yield return new WaitForSeconds(1.5f);
+        endText.SetActive(true);
     }
 }

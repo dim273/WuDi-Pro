@@ -7,6 +7,7 @@ public class UI_MainMenu : MonoBehaviour
 {
     [SerializeField] private string sceneName = "UnderGround";
     [SerializeField] private GameObject continueButton;
+    [SerializeField] private UI_Fade fadeScreen;
     private void Start()
     {
         if(SaveManager.instance.HasSaveGame() == false)
@@ -15,18 +16,25 @@ public class UI_MainMenu : MonoBehaviour
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadSceneWithFadeEffect(2.5f));
     }
 
     public void NewGame()
     {
         SaveManager.instance.DeleteSaveData();
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadSceneWithFadeEffect(2.5f));
     }
 
     public void ExitGame()
     {
         Debug.Log("ÍË³ö");
         //Application.Quit();
+    }
+
+    IEnumerator LoadSceneWithFadeEffect(float _delay)
+    {
+        fadeScreen.FadeOut();
+        yield return new WaitForSeconds(_delay);
+        SceneManager.LoadScene(sceneName);
     }
 }

@@ -97,7 +97,6 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
             return;
         }
-        Debug.Log("dwd");
         for(int i = 0; i < startingItem.Count; i++)
         {
             if(startingItem[i] != null)
